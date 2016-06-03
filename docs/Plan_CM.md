@@ -2,6 +2,39 @@
 
 ----------
 
+## INDICE ##
+
+- [1. Introducción](#1-introducción)
+	- [1.1. Propósito](#11-propósito)
+	- [1.2. Alcance](#12-alcance) 
+	- [1.3. Definiciones, Acrónimos, y Abreviaturas](#13-definiciones-acrónimos-y-abreviaturas)
+	- [1.4. Herramientas utilizadas](#14-herramientas-utilizadas)
+- [2. Organización de la Gestión de la Configuración](#2-organización-de-la-gestión-de-la-configuración)
+	- [2.1. Organización](#21-organización)
+	- [2.2. Responsabilidades](#21-responsabilidades)
+- [3. Change Management](#3-change-management)
+	- [3.1. Alcance](#31-alcance)
+	- [3.2. Junta de Control de Cambio(CCB)](#32-junta-de-control-de-cambioccb)
+		- [3.2.1. Integrantes](#321-integrantes)
+		- [3.2.2. Frecuencia](#322-frecuencia)
+		- [3.2.3. Herramientas Utilizadas](#323-herramientas-utilizadas)
+- [4. Esquema de Directorios](#4-esquema-de-directorios)
+- [5. Equipos del Proyecto](#5-equipos-del-proyecto)
+- [6. Gestión de Configuración del Código Fuente](#6-gestión-de-configuración-del-código-fuente)
+	- [6.1. Definiciones y Estrategias](#61-definiciones-y-estrategias)
+		- [6.1.1. Definición de las Ramas](#611-definición-de-las-ramas)
+		- [6.1.2. Definición de las Etiquetas](#612-definición-de-las-etiquetas)
+		- [6.1.3. Archivos Auxiliares de la CM](#613-archivos-auxiliares-de-la-cm)
+		- [6.1.4. Estrategia de Merge](#614-estrategia-de-merge)
+		- [6.1.5. Estrategia de Commit](#615-estrategia-de-commit)
+- [7. Issues Management](#7-issues-management)
+- [8. Build Management](#8-build-management)
+- [9. Release Management](#9-release-management)   
+
+
+----------
+
+
 ## 1. Introducción ##
 
 ### 1.1. Propósito ###
