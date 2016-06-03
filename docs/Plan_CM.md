@@ -133,7 +133,7 @@ Los tipos de ramas que van a ser usadas se definen a continuación:
 
 #### 6.1.2. Definición de las Etiquetas ####
 
-- **Etiquetas de Merges**: Serán aplicadas cada vez que se realice un merge a la rama principal, siempre y cuando sea desde una build estable. El formato será merge-from-<Version>.
+- **Etiquetas de Merges**: Serán aplicadas cada vez que se realice un merge a la rama principal, siempre y cuando sea desde una build estable. El formato será merge-from-<'Version'>.
 - **Etiquetas de Build de Release**: Se aplicarán cada vez que una build de release es creada, esto conlleva que haya pasado la compilación y los unit test proveídos por travis-ci. El formato será <'Proyecto'>-<'version'>--<'build id'>.
 
 #### 6.1.3. Archivos Auxiliares de CM ####
@@ -160,7 +160,7 @@ Ejempo:
 
 #### 6.1.4 Estrategia de merge ####
 
-Los merges deberán llevar una etiqueta de que indique la proveniencia del merge, a su vez estos se realizarán solo con builds estables. La etiqueta tendrá el formato: merge-from-<etiqueta-de-build>.
+Los merges deberán llevar una etiqueta de que indique la proveniencia del merge, a su vez estos se realizarán solo con builds estables. La etiqueta tendrá el formato: merge-from-<'etiqueta-de-build'>.
 
 #### 6.1.5. Estrategia de Commits ####
 
@@ -170,7 +170,7 @@ Los commits contendrán una breve descripción de los cambios agregados al proye
 
 ## 7. Issues Management ##
 
-La herramienta de gestión de defectos utilizada será GitHub. En el momento que es descubierto un defecto, se deberá reportar lo antes posible al gestor de defectos. Para dejar asentado el defecto se utilizará el siguiente formato: <N°-de-issue>-<N°-de-commit>-<Pequeña-descripción>.  
+La herramienta de gestión de defectos utilizada será GitHub. En el momento que es descubierto un defecto, se deberá reportar lo antes posible al gestor de defectos. Para dejar asentado el defecto se utilizará el siguiente formato: <'N°-de-issue'>-<'N°-de-commit'>-<'Pequeña-descripción'>.  
 Luego, dentro se especificará mas detalladamente el issue encontrado.  
 Una vez solucionado el defecto, se deberá reportar en el gestor indicando el n° de commit en el cual se solucionó.
 
