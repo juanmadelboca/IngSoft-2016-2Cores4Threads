@@ -26,7 +26,7 @@ public class Question {
 
     public String[] getAnswer() {
         // TODO implement here
-        return answer[];
+        return null;
     }
 
     public String getTrueAnswer() {

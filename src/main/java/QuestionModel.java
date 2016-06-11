@@ -17,6 +17,10 @@ public class QuestionModel implements QuestionModelInterface {
     private void save(){
     	
     }
+    
+	public void addQuestion(Question quest){
+    	
+    }
 
 	public void initialize() {
 	}
