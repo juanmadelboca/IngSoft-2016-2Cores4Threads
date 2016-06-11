@@ -3,23 +3,26 @@ import java.util.*;
 
 public class QuestionModel implements QuestionModelInterface {
 
-    public QuestionModel() {
+	private String player;
+	private ArrayList<Question> questions;
+    private HashMap<String,Integer> highScore;
+
+	public QuestionModel() {
+	}
+	
+	private void load(){
+    	
+    }
+    
+    private void save(){
+    	
     }
 
-    private String player;
+	public void initialize() {
+	}
 
-    public DataBase base;
-
-
-
-
-
-    public void initialize() {
-        // TODO implement here
-    }
-
-    public String getQuestion() {
-        // TODO implement here
+	public String getQuestion() {
+		// TODO implement here
         return "";
     }
 
