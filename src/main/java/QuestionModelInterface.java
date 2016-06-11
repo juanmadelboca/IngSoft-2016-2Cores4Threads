@@ -15,7 +15,9 @@ public interface QuestionModelInterface {
 
     String getName();
 
-    String[] getScore();
+    String[] getHighScores();
+    
+    int getScore();
 
     boolean compare(String quest);
 
