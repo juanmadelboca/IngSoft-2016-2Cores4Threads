@@ -1,4 +1,5 @@
 package main.java;
+
 import java.io.*;
 import java.util.*;
 
@@ -6,31 +7,37 @@ public class QuestionModel implements QuestionModelInterface {
 
 	private String player;
 	private ArrayList<Question> questions;
-    private HashMap<String,Integer> highScores;
-    private	Question question;
-    private int time;
+	private HashMap<String, Integer> highScores;
+	private Question question;
+	private int time;
+	private ArrayList beatObservers = new ArrayList();
+	private ArrayList bpmObservers = new ArrayList();
+	private ArrayList questionObservers = new ArrayList();
 
 	public QuestionModel() {
-		questions= new ArrayList<Question>();
-		highScores= new HashMap<String,Integer>();
+		questions = new ArrayList<Question>();
+		highScores = new HashMap<String, Integer>();
+		beatObservers = new ArrayList();
+		bpmObservers = new ArrayList();
+		questionObservers = new ArrayList();
 	}
-	
+
 	private void load() {
-		boolean carga=true;
+		boolean carga = true;
 		ObjectInputStream entrada = null;
 		try {
 			entrada = new ObjectInputStream(new FileInputStream("base.obj"));
 		} catch (IOException e) {
 			System.out.println("No existe la base");
 			e.printStackTrace();
-			carga=false;
+			carga = false;
 		}
 		try {
 			questions = (ArrayList<Question>) entrada.readObject();
 		} catch (ClassNotFoundException | IOException e) {
 			System.out.println("No existe el objeto en la base");
 			e.printStackTrace();
-			carga=false;
+			carga = false;
 		}
 
 		try {
@@ -38,16 +45,15 @@ public class QuestionModel implements QuestionModelInterface {
 		} catch (IOException e) {
 			System.out.println("No puedo cerrar el objeto");
 			e.printStackTrace();
-			carga=false;
+			carga = false;
 		}
 
 		if (carga)
 			System.out.println("Carga con exito");
 	}
-    
 
-	private void save(){
-		boolean guardar=true;
+	private void save() {
+		boolean guardar = true;
 		ObjectOutputStream salida = null;
 		try {
 			salida = new ObjectOutputStream(new FileOutputStream("base.obj"));
@@ -55,13 +61,13 @@ public class QuestionModel implements QuestionModelInterface {
 			System.out.println("No existe la base");
 			e.printStackTrace();
 		}
-	      try {
+		try {
 			salida.writeObject(questions);
 		} catch (IOException e) {
 			System.out.println("No se pudo guardar el objeto");
 			e.printStackTrace();
 		}
-	      try {
+		try {
 			salida.close();
 		} catch (IOException e) {
 			System.out.println("No se pudo cerrar el objeto");
@@ -69,13 +75,13 @@ public class QuestionModel implements QuestionModelInterface {
 		}
 		if (guardar)
 			System.out.println("Guardado con exito");
-    }
-    
-	public void addQuestion(Question quest){
+	}
+
+	public void addQuestion(Question quest) {
 		questions.add(quest);
 		save();
-    	
-    }
+
+	}
 
 	public void initialize() {
 		load();
@@ -83,76 +89,87 @@ public class QuestionModel implements QuestionModelInterface {
 
 	public String getQuestion() {
 		Random rnd = new Random();
-		int valor= (int)(rnd.nextDouble() * questions.size());
-		question= questions.get(valor);
-        return question.getQuestion();
-    }
+		int valor = (int) (rnd.nextDouble() * questions.size());
+		question = questions.get(valor);
+		return question.getQuestion();
+	}
 
-    public String[] getAnswer() {
-        return question.getAnswer();
-    }
+	public String[] getAnswer() {
+		return question.getAnswer();
+	}
 
-    public String getTrueAnswer() {
-        return question.getTrueAnswer();
-    }
+	public String getTrueAnswer() {
+		return question.getTrueAnswer();
+	}
 
-    public void setName(String name) {
-        // TODO implement here
-    }
+	public void setName(String name) {
+		this.player = player;
+	}
 
-    public String getName() {
-        // TODO implement here
-        return "";
-    }
+	public String[] getHighScores() {
+		// TODO implement here
+		return null;
+	}
 
-    public String[] getHighScores() {
-        // TODO implement here
-        return null;
-    }
-    
-    public int getScore(){
-    	
+	public int getScore() {
+
 		return 0;
-    }
+	}
 
-    public boolean compare(String quest) {
-        // TODO implement here
-        return true;
-    }
+	public String getName() {
+		// TODO implement here
+		return player;
+	}
 
-    public void setTime(int time) {
-        // TODO implement here
-    }
+	public boolean compare(String quest) {
+		// TODO implement here
+		if (quest.equals(question.getTrueAnswer()))
+			return true;
+		return false;
+	}
 
-    public void increaseTime() {
-        // TODO implement here
-    }
+	public void setTime(int time) {
+		// TODO implement here
+		this.time = time;
+	}
 
-    public void decreaseTime() {
-        // TODO implement here
-    }
+	public void increaseTime() {
+		// TODO implement here
+		time++;
+	}
 
-    public void registerObserver(BeatObserver o) {
-        // TODO implement here
-    }
+	public void decreaseTime() {
+		// TODO implement here
+		time--;
+	}
 
-    public void removeObserver(BeatObserver o) {
-        // TODO implement here
-    }
+	public void registerObserver(BeatObserver o) {
+		// TODO implement here
+		beatObservers.add(o);
+	}
 
-    public void registerObserver(BPMObserver o) {
-        // TODO implement here
-    }
+	public void removeObserver(BeatObserver o) {
+		// TODO implement here
+		beatObservers.remove(o);
+	}
 
-    public void removeObserver(BPMObserver o) {
-        // TODO implement here
-    }
+	public void registerObserver(BPMObserver o) {
+		// TODO implement here
+		bpmObservers.add(o);
+	}
 
-    public void registerObserver(QuestionObserver o) {
-        // TODO implement here
-    }
+	public void removeObserver(BPMObserver o) {
+		// TODO implement here
+		bpmObservers.remove(o);
+	}
 
-    public void removeObserver(QuestionObserver o) {
-        // TODO implement here
+	public void registerObserver(QuestionObserver o) {
+		// TODO implement here
+		questionObservers.add(o);
+	}
+
+	public void removeObserver(QuestionObserver o) {
+		// TODO implement here
+		questionObservers.remove(o);
+	}
     }
-}
