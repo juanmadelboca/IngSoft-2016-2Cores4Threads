@@ -10,16 +10,16 @@ public class QuestionModel implements QuestionModelInterface {
 	private HashMap<String, Integer> highScores;
 	private Question question;
 	private int time;
-	private ArrayList beatObservers = new ArrayList();
-	private ArrayList bpmObservers = new ArrayList();
-	private ArrayList questionObservers = new ArrayList();
+	private ArrayList<BeatObserver> beatObservers;
+	private ArrayList<BPMObserver> bpmObservers;
+	private ArrayList<QuestionObserver> questionObservers;
 
 	public QuestionModel() {
 		questions = new ArrayList<Question>();
 		highScores = new HashMap<String, Integer>();
-		beatObservers = new ArrayList();
-		bpmObservers = new ArrayList();
-		questionObservers = new ArrayList();
+		beatObservers = new ArrayList<BeatObserver>();
+		bpmObservers = new ArrayList<BPMObserver>();
+		questionObservers = new ArrayList<QuestionObserver>();
 	}
 
 	private void load() {
