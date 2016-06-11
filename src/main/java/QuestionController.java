@@ -2,8 +2,16 @@ package main.java;
 import java.util.*;
 
 public class QuestionController implements ControllerInterface {
+	QuestionModelInterface model;
+	DJView view;
+	QuestionView qview;
 
-    public QuestionController() {
+    public QuestionController(QuestionModelInterface model) {
+    	this.model = model;
+		view = new DJView(this, new QuestionAdapter(model));
+        view.createView();
+        view.createControls();
+
     }
 
 

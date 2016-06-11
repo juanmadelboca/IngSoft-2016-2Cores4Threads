@@ -3,7 +3,7 @@ import java.util.*;
 
 public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver {
 
-    public QuestionView() {
+    public QuestionView(ControllerInterface controller, QuestionModelInterface qview) {
     }
 
 

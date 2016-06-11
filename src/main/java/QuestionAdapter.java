@@ -2,8 +2,11 @@ package main.java;
 import java.util.*;
 
 public class QuestionAdapter implements BeatModelInterface {
+	
+	QuestionModelInterface model;
 
-    public QuestionAdapter() {
+    public QuestionAdapter(QuestionModelInterface model) {
+    	this.model= model;
     }
 
 
