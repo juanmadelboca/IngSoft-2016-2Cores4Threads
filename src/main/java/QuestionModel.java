@@ -103,7 +103,7 @@ public class QuestionModel implements QuestionModelInterface {
 	}
 
 	public void setName(String name) {
-		this.player = player;
+		this.player = name;
 	}
 
 	public String[] getHighScores() {
