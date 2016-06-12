@@ -1,12 +1,14 @@
 package main.java;
-  
+
 import javax.sound.midi.*;
+
+
 import java.util.*;
 
 public class BeatModel implements BeatModelInterface, MetaEventListener {
     Sequencer sequencer;
-	ArrayList beatObservers = new ArrayList();
-	ArrayList bpmObservers = new ArrayList();
+	ArrayList<BeatObserver> beatObservers = new ArrayList<BeatObserver>();
+	ArrayList<BPMObserver> bpmObservers = new ArrayList<BPMObserver>();
     int bpm = 90;
     Sequence sequence;
     Track track;
@@ -18,8 +20,7 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
  
     public void on() {
         sequencer.start();
-//        setBPM(90);
-        setBPM(getBPM());
+        setBPM(90);
     }
  
     public void off() {
@@ -29,11 +30,6 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
  
     public void setBPM(int bpm) {
 		this.bpm = bpm;
-
-		//FIX
-		sequencer.setMicrosecondPosition(0);
-        sequencer.setTickPosition(0) ; 
-            
 		sequencer.setTempoInBPM(getBPM());
 		notifyBPMObservers();
     }
@@ -88,19 +84,11 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 
 
     public void meta(MetaMessage message) {
-//        if (message.getType() == 47) {
-//			beatEvent();
-//        	sequencer.start();
-//        	setBPM(getBPM());
-//        }
-    	
-    	//FIX
-    	if (message.getType() == 0x2F ) {
+        if (message.getType() == 47) {
 			beatEvent();
-			sequencer.setMicrosecondPosition(0);
-            sequencer.setTickPosition(0) ; 
-            sequencer.start(); 
-        	setBPM(getBPM());	
+			sequencer.setTickPosition(0);
+        	sequencer.start();
+        	setBPM(getBPM());
         }
     }
 
@@ -109,10 +97,6 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 			sequencer = MidiSystem.getSequencer();
 			sequencer.open();
 			sequencer.addMetaEventListener(this);
-			
-			//Fix
-			sequencer.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
-			
 			sequence = new Sequence(Sequence.PPQ,4);
 			track = sequence.createTrack();
 			sequencer.setTempoInBPM(getBPM());

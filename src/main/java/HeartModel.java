@@ -2,21 +2,44 @@ package main.java;
 
 import java.util.*;
 
+
 public class HeartModel implements HeartModelInterface, Runnable {
-	ArrayList beatObservers = new ArrayList();
-	ArrayList bpmObservers = new ArrayList();
+	ArrayList<BeatObserver> beatObservers = new ArrayList<BeatObserver>();
+	ArrayList<BPMObserver> bpmObservers = new ArrayList<BPMObserver>();
+	static ArrayList<InstancesObserver> InstancesObservers = new ArrayList<InstancesObserver>();
+	
 	int time = 1000;
     int bpm = 90;
 	Random random = new Random(System.currentTimeMillis());
 	Thread thread;
+	
+	static HeartModel corazon=null;			//singleton
+	static int Instancias = 0; 
 
-	public HeartModel() {
+	private HeartModel() {					//singleton
 		thread = new Thread(this);
 		thread.start();
+		corazon = this;
+	}
+	
+	public static HeartModel getInstance(){	//Singleton
+		try{
+			Instancias++;
+			corazon.equals(corazon);
+		}catch(NullPointerException e){
+			corazon = new HeartModel();
+		}finally{
+			notifyInstancesObservers();
+		}
+		return corazon;
+	}
+	
+	public int getInstancesNumber(){
+		return Instancias;
 	}
 
+	int lastrate = -1;
 	public void run() {
-		int lastrate = -1;
 
 		for(;;) {
 			int change = random.nextInt(10);
@@ -62,6 +85,10 @@ public class HeartModel implements HeartModelInterface, Runnable {
 	public void registerObserver(BPMObserver o) {
 		bpmObservers.add(o);
 	}
+	
+	public void registerObserver(InstancesObserver o){
+		InstancesObservers.add(o);
+	}
 
 	public void removeObserver(BPMObserver o) {
 		int i = bpmObservers.indexOf(o);
@@ -69,11 +96,23 @@ public class HeartModel implements HeartModelInterface, Runnable {
 			bpmObservers.remove(i);
 		}
 	}
+	
+	public void removeObsever(InstancesObserver o){
+		try{
+			InstancesObservers.remove(InstancesObservers.indexOf(o));
+		}catch(IndexOutOfBoundsException e){};
+	}
 
 	public void notifyBPMObservers() {
 		for(int i = 0; i < bpmObservers.size(); i++) {
 			BPMObserver observer = (BPMObserver)bpmObservers.get(i);
 			observer.updateBPM();
+		}
+	}
+	
+	public static void notifyInstancesObservers(){
+		for(InstancesObserver o: InstancesObservers){
+			o.updateInstances();
 		}
 	}
 }

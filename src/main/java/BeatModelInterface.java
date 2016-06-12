@@ -1,6 +1,6 @@
 package main.java;
-  
-public interface BeatModelInterface {
+ 
+public interface BeatModelInterface extends ModelInterface {
 	void initialize();
   
 	void on();
@@ -10,12 +10,4 @@ public interface BeatModelInterface {
     void setBPM(int bpm);
   
 	int getBPM();
-  
-	void registerObserver(BeatObserver o);
-  
-	void removeObserver(BeatObserver o);
-  
-	void registerObserver(BPMObserver o);
-  
-	void removeObserver(BPMObserver o);
 }
