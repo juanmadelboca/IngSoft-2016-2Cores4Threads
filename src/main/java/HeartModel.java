@@ -9,11 +9,30 @@ public class HeartModel implements HeartModelInterface, Runnable {
     int bpm = 90;
 	Random random = new Random(System.currentTimeMillis());
 	Thread thread;
+	static HeartModel corazon=null;			//singleton
+	static int Instancias = 0;
 
-	public HeartModel() {
+	private HeartModel() {					//constructor privado
 		thread = new Thread(this);
 		thread.start();
+		corazon = this;
 	}
+	public static HeartModel getInstance(){	//devuelvo el modelo cuando necesite llamar al unico objeto creado y notifico a los observers
+		try{
+			Instancias++;
+			corazon.equals(corazon);
+		}catch(NullPointerException e){
+			corazon = new HeartModel();
+		}finally{
+			notifyInstancesObservers();
+		}
+		return corazon;
+	}
+	public int getInstancesNumber() //devuelvo cantidad de veces que se llama al singleton
+	{
+		return Instancias;
+	}
+
 
 	public void run() {
 		int lastrate = -1;
