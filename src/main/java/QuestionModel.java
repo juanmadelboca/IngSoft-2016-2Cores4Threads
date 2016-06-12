@@ -25,6 +25,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		dificulty = 0;
 		thread = new Thread(this);
 		score=0;
+		time=100;
 	}
 
 	private void load() {
@@ -90,6 +91,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	public void initialize() {
 		load();
+		thread.start();
 	}
 
 	public void nextQuestion() {
@@ -97,7 +99,6 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		int valor = (int) (rnd.nextDouble() * questions.size());
 		question = questions.get(valor);
 		notifyQuestionObserver();
-		thread.start();
 	}
 
 	public String getQuestion() {
@@ -132,7 +133,6 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	public boolean compare(String quest) {
-		thread.interrupt();
 		if (quest.equals(question.getTrueAnswer())) {
 			increaseScore();
 			// sumo puntos, en otras versiones, se multiplica por dificultad, o
