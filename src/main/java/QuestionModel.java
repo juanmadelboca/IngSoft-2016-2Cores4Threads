@@ -141,6 +141,10 @@ public class QuestionModel implements QuestionModelInterface {
 		score = score + 100;
 	}
 
+	public int getTime (){
+		return time;
+	}
+	
 	public void setTime(int time) {
 		// TODO implement here
 		this.time = time;
