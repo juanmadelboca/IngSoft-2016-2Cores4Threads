@@ -28,23 +28,23 @@ public class QuestionAdapter implements BeatModelInterface {
 
     public int getBPM() {
         // TODO implement here
-        return 0;
+        return model.getDificulty();
     }
 
     public void registerObserver(BeatObserver o) {
-        // TODO implement here
+        model.registerObserver(o);
     }
 
     public void removeObserver(BeatObserver o) {
-        // TODO implement here
+        model.removeObserver(o);
     }
 
     public void registerObserver(BPMObserver o) {
-        // TODO implement here
+        model.registerObserver(o);
     }
 
     public void removeObserver(BPMObserver o) {
-        // TODO implement here
+        model.removeObserver(o);
     }
 
 }

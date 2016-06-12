@@ -32,6 +32,8 @@ public interface QuestionModelInterface {
 
 	void decreaseTime();
 
+	int getDificulty();
+
 	void registerObserver(BeatObserver o);
 
 	void removeObserver(BeatObserver o);

@@ -6,6 +6,7 @@ import java.util.*;
 public class QuestionModel implements QuestionModelInterface {
 
 	private String player;
+	private int dificulty;
 	private ArrayList<Question> questions;
 	private HashMap<String, Integer> highScores;
 	private Question question;
@@ -20,6 +21,7 @@ public class QuestionModel implements QuestionModelInterface {
 		beatObservers = new ArrayList<BeatObserver>();
 		bpmObservers = new ArrayList<BPMObserver>();
 		questionObservers = new ArrayList<QuestionObserver>();
+		dificulty = 0;
 	}
 
 	private void load() {
@@ -159,7 +161,10 @@ public class QuestionModel implements QuestionModelInterface {
 		// TODO implement here
 		time--;
 	}
-
+    public int getDificulty()
+	{
+		return dificulty;
+	}
 	public void registerObserver(BeatObserver o) {
 		// TODO implement here
 		beatObservers.add(o);
