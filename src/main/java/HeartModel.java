@@ -1,40 +1,19 @@
 package main.java;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class HeartModel implements HeartModelInterface, Runnable {
 	ArrayList beatObservers = new ArrayList();
 	ArrayList bpmObservers = new ArrayList();
-	static ArrayList<InstancesObserver> InstancesObservers = new ArrayList<InstancesObserver>();
 	int time = 1000;
-	int bpm = 90;
+    int bpm = 90;
 	Random random = new Random(System.currentTimeMillis());
 	Thread thread;
-	static HeartModel corazon=null;			//singleton
-	static int Instancias = 0;
 
-	HeartModel() {					//constructor privado
+	public HeartModel() {
 		thread = new Thread(this);
 		thread.start();
-		corazon = this;
 	}
-	public static HeartModel getInstance(){	//devuelvo el modelo cuando necesite llamar al unico objeto creado y notifico a los observers
-		try{
-			Instancias++;
-			corazon.equals(corazon);
-		}catch(NullPointerException e){
-			corazon = new HeartModel();
-		}finally{
-			notifyInstancesObservers();
-		}
-		return corazon;
-	}
-	public int getInstancesNumber() //devuelvo cantidad de veces que se llama al singleton
-	{
-		return Instancias;
-	}
-
 
 	public void run() {
 		int lastrate = -1;
@@ -97,18 +76,4 @@ public class HeartModel implements HeartModelInterface, Runnable {
 			observer.updateBPM();
 		}
 	}
-	public static void notifyInstancesObservers(){
-		for(InstancesObserver o: InstancesObservers){
-			o.updateInstances();
-		}
-	}
-	public void removeObsever(InstancesObserver o){
-		try{
-			InstancesObservers.remove(InstancesObservers.indexOf(o));
-		}catch(IndexOutOfBoundsException e){};
-	}
-	public void registerObserver(InstancesObserver o){
-		InstancesObservers.add(o);
-	}
-
 }
