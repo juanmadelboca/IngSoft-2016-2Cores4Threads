@@ -11,45 +11,49 @@ public class QuestionController implements ControllerInterface {
 		view = new DJView(this, new QuestionAdapter(model));
         view.createView();
         view.createControls();
+        model.initialize();
+        view.disableStopMenuItem();
 
     }
 
 
     public void start() {
-        // TODO implement here
+    	model.nextQuestion();
+        
     }
 
     public void stop() {
-        // TODO implement here
     }
 
     public void increaseBPM() {
-        // TODO implement here
+        model.increaseTime();
     }
 
     public void decreaseBPM() {
-        // TODO implement here
+        model.decreaseTime();
     }
 
     public void setBPM(int bpm) {
-        // TODO implement here
+        model.setTime(bpm);
     }
 
     public boolean send(String quest) {
-        // TODO implement here
-        return true;
+    	boolean correctAnswer= model.compare(quest);
+    	model.nextQuestion();
+        return correctAnswer;
     }
 
     public void skip() {
-        // TODO implement here
+        model.nextQuestion();
     }
 
     public void setName(String name) {
-        // TODO implement here
+        model.setName(name);
     }
 
-    public void addQuestion(Question quest) {
-        // TODO implement here
+    public void addQuestion(String question, String[] answer, String trueAnswer) {
+    	Question quest= new Question(question,answer,trueAnswer);
+        model.addQuestion(quest);
     }
 
 }

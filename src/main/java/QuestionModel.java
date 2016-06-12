@@ -120,6 +120,10 @@ public class QuestionModel implements QuestionModelInterface {
 		// TODO implement here
 		return player;
 	}
+	
+	public void nextQuestion(){
+		
+	}
 
 	public boolean compare(String quest) {
 		// TODO implement here

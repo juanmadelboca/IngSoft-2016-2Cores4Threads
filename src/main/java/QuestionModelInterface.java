@@ -20,6 +20,10 @@ public interface QuestionModelInterface {
     int getScore();
 
     boolean compare(String quest);
+    
+    void addQuestion(Question quest);
+    
+    void nextQuestion();
 
     void setTime(int time);
 

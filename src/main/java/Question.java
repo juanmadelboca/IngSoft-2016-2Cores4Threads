@@ -12,7 +12,7 @@ public class Question {
 
     private String trueAnswer;
 
-    public void Question(String question, String[] answer, String trueAnswer) {
+    public Question(String question, String[] answer, String trueAnswer) {
         // TODO implement here
         this.question=question;
         this.answer=answer;
