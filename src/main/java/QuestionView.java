@@ -75,7 +75,6 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 
     public void updateBPM() {
     	txtpnTiempoRestante.setText("Tiempo restante: " + Integer.toString(model.getTime()));
-    	System.out.print("Tiempo " + Integer.toString(model.getTime()));
     	txtpnTiempoRestante.repaint();
     }
     public void updateBeat() {
