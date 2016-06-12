@@ -58,6 +58,9 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
     public QuestionView(QuestionController controller, QuestionModelInterface model) {
     	this.controller= controller;
     	this.model= model;
+    	model.registerObserver((BPMObserver)this);
+    	model.registerObserver((BeatObserver)this);
+    	model.registerObserver((QuestionObserver)this);
     	createControls();
     }
     
@@ -72,6 +75,8 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 
     public void updateBPM() {
     	txtpnTiempoRestante.setText("Tiempo restante: " + Integer.toString(model.getTime()));
+    	System.out.print("Tiempo " + Integer.toString(model.getTime()));
+    	txtpnTiempoRestante.repaint();
     }
     public void updateBeat() {
         // TODO implement here
@@ -84,9 +89,22 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		rdbtnNewRadioButton_1.setText(array[1]);
 		rdbtnNewRadioButton_2.setText(array[2]);
 		rdbtnNewRadioButton_3.setText(array[3]);
+		rdbtnNewRadioButton.setEnabled(true);
+		rdbtnNewRadioButton_1.setEnabled(true);
+		rdbtnNewRadioButton_2.setEnabled(true);
+		rdbtnNewRadioButton_3.setEnabled(true);
+		rdbtnNewRadioButton.setSelected(false);
+		rdbtnNewRadioButton_1.setSelected(false);
+		rdbtnNewRadioButton_2.setSelected(false);
+		rdbtnNewRadioButton_3.setSelected(false);
+		rdbtnNewRadioButton.repaint();
+		rdbtnNewRadioButton_1.repaint();
+		rdbtnNewRadioButton_2.repaint();
+		rdbtnNewRadioButton_3.repaint();
 		txtpnTiempoRestante.setText("Tiempo restante: " + Integer.toString(model.getTime()));
 		txtpnTiempoRestante.setEnabled(true);
 		txtScore.setText("Score: "+ Integer.toString(model.getScore()));
+		txtScore.repaint();
 		textPane.setEnabled(true);
 	}
 	

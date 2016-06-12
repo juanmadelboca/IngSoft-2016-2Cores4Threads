@@ -24,6 +24,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		questionObservers = new ArrayList<QuestionObserver>();
 		dificulty = 0;
 		thread = new Thread(this);
+		score=0;
 	}
 
 	private void load() {
@@ -96,10 +97,10 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		int valor = (int) (rnd.nextDouble() * questions.size());
 		question = questions.get(valor);
 		notifyQuestionObserver();
+		thread.start();
 	}
 
 	public String getQuestion() {
-		thread.start();
 		return question.getQuestion();
 	}
 
@@ -131,7 +132,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	public boolean compare(String quest) {
-		// TODO implement here
+		thread.interrupt();
 		if (quest.equals(question.getTrueAnswer())) {
 			increaseScore();
 			// sumo puntos, en otras versiones, se multiplica por dificultad, o
@@ -203,21 +204,24 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	public void notifyQuestionObserver(){
 		int i=0;
 		while( i<questionObservers.size()){
-			questionObservers.get(i).updateQuestion();
+			QuestionObserver observer= questionObservers.get(i);
+			observer.updateQuestion();
 			i++;
 		}
 	}
 	public void notifyBPMObserver(){
 		int i=0;
 		while( i<bpmObservers.size()){
-			bpmObservers.get(i).updateBPM();
+			BPMObserver observer= bpmObservers.get(i);
+			observer.updateBPM();
 			i++;
 		}
 	}
 	public void notifyBeatObserver(){
 		int i=0;
 		while( i<beatObservers.size()){
-			beatObservers.get(i).updateBeat();
+			BeatObserver observer= beatObservers.get(i);
+			observer.updateBeat();
 			i++;
 		}
 	}
@@ -234,6 +238,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			}
 			
 			decreaseTime();
+			
 			
 		
 	}
