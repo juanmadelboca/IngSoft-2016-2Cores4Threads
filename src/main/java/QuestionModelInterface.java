@@ -19,6 +19,8 @@ public interface QuestionModelInterface {
 	String getHighScores();
 
 	int getScore();
+	
+	int getTime();
 
 	boolean compare(String quest);
 

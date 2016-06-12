@@ -1,7 +1,8 @@
 package main.java;
+import java.io.Serializable;
 import java.util.*;
 
-public class Question {
+public class Question implements Serializable{
 
     public Question() {
     }

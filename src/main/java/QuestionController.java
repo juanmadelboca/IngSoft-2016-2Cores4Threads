@@ -13,6 +13,7 @@ public class QuestionController implements ControllerInterface {
         view.createControls();
         model.initialize();
         view.disableStopMenuItem();
+        qview= new QuestionView(this, model);
 
     }
 
