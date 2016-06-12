@@ -1,46 +1,47 @@
 package main.java;
+
 import java.util.*;
 
 public interface QuestionModelInterface {
 
-    void initialize();
+	void initialize();
 
-    String getQuestion();
+	String getQuestion();
 
-    String[] getAnswer();
+	String[] getAnswer();
 
-    String getTrueAnswer();
+	String getTrueAnswer();
 
-    void setName(String name);
+	void setName(String name);
 
-    String getName();
+	String getName();
 
-    String[] getHighScores();
-    
-    int getScore();
+	String getHighScores();
 
-    boolean compare(String quest);
-    
-    void addQuestion(Question quest);
-    
-    void nextQuestion();
+	int getScore();
 
-    void setTime(int time);
+	boolean compare(String quest);
 
-    void increaseTime();
+	void addQuestion(Question quest);
 
-    void decreaseTime();
+	void nextQuestion();
 
-    void registerObserver(BeatObserver o);
+	void setTime(int time);
 
-    void removeObserver(BeatObserver o);
+	void increaseTime();
 
-    void registerObserver(BPMObserver o);
+	void decreaseTime();
 
-    void removeObserver(BPMObserver o);
+	void registerObserver(BeatObserver o);
 
-    void registerObserver(QuestionObserver o);
+	void removeObserver(BeatObserver o);
 
-    void removeObserver(QuestionObserver o);
+	void registerObserver(BPMObserver o);
+
+	void removeObserver(BPMObserver o);
+
+	void registerObserver(QuestionObserver o);
+
+	void removeObserver(QuestionObserver o);
 
 }

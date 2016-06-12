@@ -9,7 +9,7 @@ public class QuestionModel implements QuestionModelInterface {
 	private ArrayList<Question> questions;
 	private HashMap<String, Integer> highScores;
 	private Question question;
-	private int time;
+	private int time, score;
 	private ArrayList<BeatObserver> beatObservers;
 	private ArrayList<BPMObserver> bpmObservers;
 	private ArrayList<QuestionObserver> questionObservers;
@@ -87,10 +87,14 @@ public class QuestionModel implements QuestionModelInterface {
 		load();
 	}
 
-	public String getQuestion() {
+	public void nextQuestion() {
 		Random rnd = new Random();
 		int valor = (int) (rnd.nextDouble() * questions.size());
 		question = questions.get(valor);
+	}
+
+	public String getQuestion() {
+
 		return question.getQuestion();
 	}
 
@@ -106,30 +110,35 @@ public class QuestionModel implements QuestionModelInterface {
 		this.player = name;
 	}
 
-	public String[] getHighScores() {
+	public String getHighScores() {
 		// TODO implement here
-		return null;
+		return highScores.toString();
 	}
 
 	public int getScore() {
 
-		return 0;
+		return score;
 	}
 
 	public String getName() {
 		// TODO implement here
 		return player;
 	}
-	
-	public void nextQuestion(){
-		
-	}
 
 	public boolean compare(String quest) {
 		// TODO implement here
-		if (quest.equals(question.getTrueAnswer()))
+		if (quest.equals(question.getTrueAnswer())) {
+			increaseScore();
+			// sumo puntos, en otras versiones, se multiplica por dificultad, o
+			// por tiempo que sobro
 			return true;
+		}
 		return false;
+
+	}
+
+	public void increaseScore() {
+		score = score + 100;
 	}
 
 	public void setTime(int time) {
@@ -176,4 +185,4 @@ public class QuestionModel implements QuestionModelInterface {
 		// TODO implement here
 		questionObservers.remove(o);
 	}
-    }
+}
