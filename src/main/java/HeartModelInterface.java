@@ -1,9 +1,5 @@
 package main.java;
 
-public interface HeartModelInterface {
+public interface HeartModelInterface extends ModelInterface {
 	int getHeartRate();
-	void registerObserver(BeatObserver o);
-	void removeObserver(BeatObserver o);
-	void registerObserver(BPMObserver o);
-	void removeObserver(BPMObserver o);
 }

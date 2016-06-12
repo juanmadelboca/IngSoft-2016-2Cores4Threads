@@ -1,8 +1,9 @@
 package main.java;
-    
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
 
 public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 	BeatModelInterface model;
@@ -22,6 +23,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
     JMenu menu;
     JMenuItem startMenuItem;
     JMenuItem stopMenuItem;
+    JPanel bpmPanel;
 
     public DJView(ControllerInterface controller, BeatModelInterface model) {	
 		this.controller = controller;
@@ -29,8 +31,8 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 		model.registerObserver((BeatObserver)this);
 		model.registerObserver((BPMObserver)this);
     }
-    
-    public void createView() {
+
+	public void createView() {
 		// Create all Swing components here
         viewPanel = new JPanel(new GridLayout(1, 2));
         viewFrame = new JFrame("View");
@@ -39,7 +41,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         bpmOutputLabel = new JLabel("offline", SwingConstants.CENTER);
 		beatBar = new BeatBar();
 		beatBar.setValue(0);
-        JPanel bpmPanel = new JPanel(new GridLayout(2, 1));
+        bpmPanel = new JPanel(new GridLayout(3, 1));
 		bpmPanel.add(beatBar);
         bpmPanel.add(bpmOutputLabel);
         viewPanel.add(bpmPanel);
@@ -65,6 +67,8 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         startMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 controller.start();
+                disableStartMenuItem();
+                enableStopMenuItem();
             }
         });
         stopMenuItem = new JMenuItem("Stop");
@@ -72,6 +76,8 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         stopMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 controller.stop();
+                disableStopMenuItem();
+                enableStartMenuItem();
             }
         });
         JMenuItem exit = new JMenuItem("Quit");
@@ -137,8 +143,10 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 
     public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == setBPMButton) {
-			int bpm = Integer.parseInt(bpmTextField.getText());
-        	controller.setBPM(bpm);
+			try{
+				int bpm = Integer.parseInt(bpmTextField.getText());
+	        	controller.setBPM(bpm);
+			}catch(NumberFormatException e){}
 		} else if (event.getSource() == increaseBPMButton) {
 			controller.increaseBPM();
 		} else if (event.getSource() == decreaseBPMButton) {
@@ -148,14 +156,14 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 
 	public void updateBPM() {
 		if (model != null) {
-			int bpm = model.getBPM();
+			int bpm = ((BeatModelInterface)model).getBPM();
 			if (bpm == 0) {
 				if (bpmOutputLabel != null) {
         			bpmOutputLabel.setText("offline");
 				}
 			} else {
 				if (bpmOutputLabel != null) {
-        			bpmOutputLabel.setText("Current BPM: " + model.getBPM());
+        			bpmOutputLabel.setText("Current BPM: " + bpm);
 				}
 			}
 		}
