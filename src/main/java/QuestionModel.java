@@ -202,20 +202,23 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 	public void notifyQuestionObserver(){
 		int i=0;
-		while( i<=questionObservers.size()){
+		while( i<questionObservers.size()){
 			questionObservers.get(i).updateQuestion();
+			i++;
 		}
 	}
 	public void notifyBPMObserver(){
 		int i=0;
-		while( i<=bpmObservers.size()){
+		while( i<bpmObservers.size()){
 			bpmObservers.get(i).updateBPM();
+			i++;
 		}
 	}
 	public void notifyBeatObserver(){
 		int i=0;
-		while( i<=beatObservers.size()){
+		while( i<beatObservers.size()){
 			beatObservers.get(i).updateBeat();
+			i++;
 		}
 	}
 
