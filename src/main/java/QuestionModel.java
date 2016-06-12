@@ -95,6 +95,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		Random rnd = new Random();
 		int valor = (int) (rnd.nextDouble() * questions.size());
 		question = questions.get(valor);
+		notifyQuestionObserver();
 	}
 
 	public String getQuestion() {
@@ -145,29 +146,31 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		score = score + 100;
 	}
 
-	public int getTime() {
+	public int getTime (){
 		return time;
 	}
-
+	
 	public void setTime(int time) {
 		// TODO implement here
 		this.time = time;
+		notifyBPMObserver();
 	}
 
 	public void increaseTime() {
 		// TODO implement here
 		time++;
+		notifyBPMObserver();
 	}
 
 	public void decreaseTime() {
 		// TODO implement here
 		time--;
+		notifyBPMObserver();
 	}
-
-	public int getDificulty() {
+    public int getDificulty()
+	{
 		return dificulty;
 	}
-
 	public void registerObserver(BeatObserver o) {
 		// TODO implement here
 		beatObservers.add(o);
@@ -197,20 +200,39 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		// TODO implement here
 		questionObservers.remove(o);
 	}
+	public void notifyQuestionObserver(){
+		int i=0;
+		while( i<=questionObservers.size()){
+			questionObservers.get(i).updateQuestion();
+		}
+	}
+	public void notifyBPMObserver(){
+		int i=0;
+		while( i<=bpmObservers.size()){
+			bpmObservers.get(i).updateBPM();
+		}
+	}
+	public void notifyBeatObserver(){
+		int i=0;
+		while( i<=beatObservers.size()){
+			beatObservers.get(i).updateBeat();
+		}
+	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		while (time != 0) {
+		while(time!=0){
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			
 			decreaseTime();
-
-		}
+			
+		
 	}
 }
+	}
