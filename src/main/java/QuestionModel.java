@@ -3,7 +3,7 @@ package main.java;
 import java.io.*;
 import java.util.*;
 
-public class QuestionModel implements QuestionModelInterface {
+public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	private String player;
 	private int dificulty;
@@ -14,6 +14,7 @@ public class QuestionModel implements QuestionModelInterface {
 	private ArrayList<BeatObserver> beatObservers;
 	private ArrayList<BPMObserver> bpmObservers;
 	private ArrayList<QuestionObserver> questionObservers;
+	private Thread thread;
 
 	public QuestionModel() {
 		questions = new ArrayList<Question>();
@@ -22,6 +23,7 @@ public class QuestionModel implements QuestionModelInterface {
 		bpmObservers = new ArrayList<BPMObserver>();
 		questionObservers = new ArrayList<QuestionObserver>();
 		dificulty = 0;
+		thread = new Thread(this);
 	}
 
 	private void load() {
@@ -96,7 +98,7 @@ public class QuestionModel implements QuestionModelInterface {
 	}
 
 	public String getQuestion() {
-
+		thread.start();
 		return question.getQuestion();
 	}
 
@@ -194,4 +196,20 @@ public class QuestionModel implements QuestionModelInterface {
 		// TODO implement here
 		questionObservers.remove(o);
 	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(time!=0){
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			decreaseTime();
+		
+	}
 }
+	}
