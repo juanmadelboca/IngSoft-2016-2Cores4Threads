@@ -7,18 +7,18 @@ import org.junit.Test;
 
 public class CreateQuestionTest {
 	String [] respuestas = {"franco"," mario", "mariano", "juan"};
-     Question q = new Question("¿tu nombre es?",respuestas,"franco");
+     Question q = new Question("tu nombre es?",respuestas,"franco");
 	@Test
 	public void testCorrecta() {
 		assertEquals("franco",q.getTrueAnswer());
 	}
 	@Test
 	public void testIncorrecta() {
-		assertNotEquals("mario",q.getTrueAnswer());
+		assertFalse("mario"==q.getTrueAnswer());
 	}
 	@Test
 	public void testGetAnswer(){
-		assertEquals("¿tu nombre es?",q.getQuestion());
+		assertEquals("tu nombre es?",q.getQuestion());
 	}
 	@Test
     public void testCreacionDeObjeto(){
@@ -27,16 +27,16 @@ public class CreateQuestionTest {
 	@Test
 	public void testNullParameters1(){
 		Question q1 = new Question(null,null,null);
-		assertNotNull("el objeto es null",q1.getAnswer());
+		assertNull("el objeto es null",q1.getAnswer());
 	}
 	@Test
 	public void testNullParameters2(){
 		Question q1 = new Question(null,null,null);
-		assertNotNull("el objeto es null",q1.getQuestion());
+		assertNull(q1.getQuestion());
 	}
 	@Test
 	public void testNullParameters3(){
 		Question q1 = new Question(null,null,null);
-		assertNotNull("el objeto es null",q1.getTrueAnswer());
+		assertNull("el objeto es null",q1.getTrueAnswer());
 	}
 }
