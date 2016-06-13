@@ -2,13 +2,21 @@
 
 ----------
 
-#### En este archivo se especificarán las notas de release, incluyendo version, features añadidas, Autor/es, la fecha, bugs conocidos y un pequeño comentario. ####
-
-> Fecha: 2011/05/10  
-> author: <nombre-del-desarrollador>  
-> version: <numero-de-version>  
+> Fecha: 13/06/2016
+> author: 2Cores4Threads
+> version: v1.0.0
 > 
-> funcionalidad incluida: Nueva vista del sistema  
-> Bugs conocidos: No funciona el botón start  
-> Comentarios: <comentarios-adicionales>
+> Funcionalidad incluida: 
+> - Nueva vista del sistema(Preguntas multiple-choice):
+>   - Posibilidad de agregar nuevas preguntas
+>   - Tiempo implementado en real time
+>   - Score implementado en real time
+> - Singleton implementado en HeartModel.
+>
+> Bugs conocidos:
+> - No sucede nada cuando el tiempo llega a 0.
+> - Posibilidad de enviar null como pregunta/respuesta cuando añade una nueva
+> - El sistema envía mas de una vez la misma pregunta
+> Comentarios: 
+> - Ingresar el nombre no tiene ninguna incidencia
 
