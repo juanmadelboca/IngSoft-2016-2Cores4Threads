@@ -65,8 +65,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
     }
     
     private void initialize(){
-		controller.start();
-		nextQuestion();
+    	controller.start();
 	}
     
     public void updateQuestion() {
@@ -324,7 +323,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		btnSaltar = new JButton("Saltar");
 		btnSaltar.setBounds(345, 192, 89, 23);
 		panel_1.add(btnSaltar);
-		btnNewButton.addActionListener(new ActionListener() {
+		btnSaltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.skip();
 			}

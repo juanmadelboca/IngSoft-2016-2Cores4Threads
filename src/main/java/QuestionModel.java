@@ -16,6 +16,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	private ArrayList<QuestionObserver> questionObservers;
 	private Thread thread;
 
+
 	public QuestionModel() {
 		questions = new ArrayList<Question>();
 		highScores = new HashMap<String, Integer>();
@@ -102,6 +103,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	public String getQuestion() {
+		
 		return question.getQuestion();
 	}
 
@@ -135,12 +137,9 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	public boolean compare(String quest) {
 		if (quest.equals(question.getTrueAnswer())) {
 			increaseScore();
-			// sumo puntos, en otras versiones, se multiplica por dificultad, o
-			// por tiempo que sobro
 			return true;
 		}
 		return false;
-
 	}
 
 	public void increaseScore() {
@@ -233,7 +232,6 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
