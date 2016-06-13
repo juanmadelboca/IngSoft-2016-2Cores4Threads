@@ -28,7 +28,7 @@ public class QuestionAdapter implements BeatModelInterface {
 
     public int getBPM() {
         // TODO implement here
-        return model.getDificulty();
+        return model.getTime();
     }
 
     public void registerObserver(BeatObserver o) {

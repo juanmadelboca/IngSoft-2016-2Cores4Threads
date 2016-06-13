@@ -15,6 +15,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	private ArrayList<BPMObserver> bpmObservers;
 	private ArrayList<QuestionObserver> questionObservers;
 	private Thread thread;
+	private boolean start;
 
 
 	public QuestionModel() {
@@ -93,6 +94,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	public void initialize() {
 		load();
 		thread.start();
+		start=false;
 	}
 
 	public void nextQuestion() {
@@ -100,6 +102,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		int valor = (int) (rnd.nextDouble() * questions.size());
 		question = questions.get(valor);
 		notifyQuestionObserver();
+		start=true;
 	}
 
 	public String getQuestion() {
@@ -166,6 +169,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		// TODO implement here
 		time--;
 		notifyBPMObserver();
+		notifyBeatObserver();
 	}
     public int getDificulty()
 	{
@@ -234,8 +238,8 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
-			decreaseTime();
+			if (start)
+				decreaseTime();
 			
 			
 		
