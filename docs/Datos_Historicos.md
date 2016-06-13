@@ -12,8 +12,8 @@
 |  | 3hs | Del Boca Juan | Organización del repositorio y Travis |
 | 04/06 | 3hs | Di Lorenzo Franco- Del Boca Juan | Definición del Diagrama de clases |
 |  | 3hs | Rivero Franco | Diagramas de Casos de Usos |
-|  |  |  |  |
-|  |  |  |  |
+| 11/06 | 6hs | Todos | Codificación de lo diseñado en los diagramas de clases |
+| 12/06 | 8hs | Todos | Correción de errores y lanzamiento del primer release |
 |  |  |  |  |
 |  |  |  |  |
 |  |  |  |  |
