@@ -2,9 +2,9 @@
 
 ----------
 
-> Fecha: 13/06/2016
-> author: 2Cores4Threads
-> version: v1.0.0
+> Fecha: 13/06/2016  
+> author: 2Cores4Threads  
+> version: v1.0.0  
 > 
 > Funcionalidad incluida: 
 > - Nueva vista del sistema(Preguntas multiple-choice):
