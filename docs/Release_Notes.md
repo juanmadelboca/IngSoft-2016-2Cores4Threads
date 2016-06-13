@@ -11,12 +11,12 @@
 >   - Posibilidad de agregar nuevas preguntas
 >   - Tiempo implementado en real time
 >   - Score implementado en real time
-> - Singleton implementado en HeartModel.
+> - Singleton implementado en HeartModel.  
 >
 > Bugs conocidos:
 > - No sucede nada cuando el tiempo llega a 0.
 > - Posibilidad de enviar null como pregunta/respuesta cuando añade una nueva
-> - El sistema envía mas de una vez la misma pregunta
+> - El sistema envía mas de una vez la misma pregunta  
 > Comentarios: 
 > - Ingresar el nombre no tiene ninguna incidencia
 
