@@ -138,6 +138,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	public boolean compare(String quest) {
+		System.out.println("Respuesta: "+ quest+ " Correcta: "+question.getTrueAnswer());
 		if (quest.equals(question.getTrueAnswer())) {
 			increaseScore();
 			return true;

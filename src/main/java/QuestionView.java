@@ -294,7 +294,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 					rdbtnNewRadioButton.setEnabled(false);
 					rdbtnNewRadioButton_2.setEnabled(false);
 					rdbtnNewRadioButton_1.setEnabled(false);
-					answer = rdbtnNewRadioButton_1.getText();
+					answer = rdbtnNewRadioButton_3.getText();
 				} else {
 					rdbtnNewRadioButton.setEnabled(true);
 					rdbtnNewRadioButton_2.setEnabled(true);
