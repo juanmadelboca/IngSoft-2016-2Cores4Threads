@@ -7,7 +7,7 @@ public class multiViewTestDrive {
 		BeatModel modelB = new BeatModel();
 		
 		@SuppressWarnings("unused")
-		QuestionController QController= new QuestionController(modelQ,"uniqueView");
+		QuestionController QController= new QuestionController(modelQ);
 		@SuppressWarnings("unused")
 		HeartController HController = new HeartController(modelH);
 		@SuppressWarnings("unused")

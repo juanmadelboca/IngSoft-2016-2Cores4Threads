@@ -45,8 +45,5 @@ public class QuestionAdapter implements BeatModelInterface {
     public void removeObserver(BPMObserver o) {
         model.removeObserver(o);
     }
-    public QuestionModelInterface getModel(){
-		return model;
-	}
 
 }
