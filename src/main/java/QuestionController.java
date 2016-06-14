@@ -5,18 +5,33 @@ public class QuestionController implements ControllerInterface {
 	DJView view;
 	QuestionView qview;
 
-    public QuestionController(QuestionModelInterface model) {
+    public QuestionController(QuestionModelInterface model,String tipo) {
     	this.model = model;
-		view = new DJView(this, new QuestionAdapter(model));
+    if (tipo.toLowerCase() == "uniqueview")
+    {	view = new DJView(this, new QuestionAdapter(model));
         view.createView();
         view.createControls();
         model.initialize();
         view.disableStopMenuItem();
         view.disableStartMenuItem();
         qview= new QuestionView(this, model);
+    }
+    else if (tipo.toLowerCase() == "selection")
+    {
+        view = new selectionView(this,new QuestionAdapter(model));
+        view.createView();
+        view.createControls();
+        view.disableStopMenuItem();
+        view.disableStartMenuItem();
+        qview= new QuestionView(this, model);
+    }
+    
 
     }
-
+    public QuestionController(QuestionModelInterface model, DJView view){
+		this.model=model;
+		this.view = view;
+	}
 
     public void start() {
     	model.nextQuestion();
