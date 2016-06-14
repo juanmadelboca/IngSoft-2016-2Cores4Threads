@@ -1,7 +1,7 @@
 package main.java;
 import java.io.Serializable;
-import java.util.*;
 
+@SuppressWarnings("serial")
 public class Question implements Serializable{
 
     public Question() {

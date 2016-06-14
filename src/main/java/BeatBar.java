@@ -3,8 +3,10 @@ package main.java;
   
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
+@SuppressWarnings({ "serial", "unused" })
 public class BeatBar extends JProgressBar implements Runnable { 
     JProgressBar progressBar;
 	Thread thread;

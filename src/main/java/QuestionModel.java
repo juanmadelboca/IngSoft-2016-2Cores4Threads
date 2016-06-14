@@ -30,6 +30,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		time=100;
 	}
 
+	@SuppressWarnings("unchecked")
 	private void load() {
 		boolean carga = true;
 		ObjectInputStream entrada = null;
