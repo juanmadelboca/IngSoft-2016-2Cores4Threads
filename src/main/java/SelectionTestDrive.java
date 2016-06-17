@@ -4,9 +4,9 @@ public class SelectionTestDrive {
 
 	public static void main(String[] args)
 	{
-		BeatModel model = new BeatModel();
+		QuestionModel model = new QuestionModel();
 		@SuppressWarnings("unused")
-		BeatController controller= new BeatController(model);
+		SelectionController controller= new SelectionController(model);
 
 		
 	}

@@ -32,6 +32,3 @@ public class HeartController implements ControllerInterface {
   
  	public void setBPM(int bpm) {}
 }
-
-
-

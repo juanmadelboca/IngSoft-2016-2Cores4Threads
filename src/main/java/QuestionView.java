@@ -1,5 +1,6 @@
 package main.java;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,7 @@ import javax.swing.border.SoftBevelBorder;
 
 public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver {
 	
-	private QuestionController controller;
+	private ControllerInterface controller;
 	private QuestionModelInterface model;
 	private JFrame frmcoresthreads;
 	private JTextField txtScore;
@@ -62,7 +63,14 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
     	model.registerObserver((QuestionObserver)this);
     	createControls();
     }
-    
+    public QuestionView(SelectionController controller, QuestionModelInterface model) {
+    	this.controller= controller;
+    	this.model= model;
+    	model.registerObserver((BPMObserver)this);
+    	model.registerObserver((BeatObserver)this);
+    	model.registerObserver((QuestionObserver)this);
+    	createControls();
+    }
     private void initialize(){
     	controller.start();
 	}
@@ -172,7 +180,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 				respuesta[2] = textField_4.getText();
 				respuesta[3] = textField_5.getText();
 
-				controller.addQuestion(textField_1.getText(), respuesta, textField_6.getText());
+				((QuestionController) controller).addQuestion(textField_1.getText(), respuesta, textField_6.getText());
 				textField_1.setText("");
 				textField_2.setText("");
 				textField_3.setText("");
@@ -308,7 +316,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		panel_1.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.send(answer);
+				((QuestionController) controller).send(answer);
 			}
 		});
 
@@ -324,7 +332,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		panel_1.add(btnSaltar);
 		btnSaltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.skip();
+				((QuestionController) controller).skip();
 			}
 		});
 
@@ -357,7 +365,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 			public void actionPerformed(ActionEvent arg0) {
 				emergente.setVisible(false);
 				panel_1.setVisible(true);
-				controller.setName(textField.getText());
+				((Component) controller).setName(textField.getText());
 				initialize();
 			}
 		});
