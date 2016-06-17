@@ -365,7 +365,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 			public void actionPerformed(ActionEvent arg0) {
 				emergente.setVisible(false);
 				panel_1.setVisible(true);
-				((Component) controller).setName(textField.getText());
+				((QuestionController) controller).setName(textField.getText());
 				initialize();
 			}
 		});
