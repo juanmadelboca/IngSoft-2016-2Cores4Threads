@@ -97,7 +97,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
 		}
 	}
 	
-	public void removeObsever(InstancesObserver o){
+	public void removeObserver(InstancesObserver o) {
 		try{
 			InstancesObservers.remove(InstancesObservers.indexOf(o));
 		}catch(IndexOutOfBoundsException e){};
@@ -115,4 +115,5 @@ public class HeartModel implements HeartModelInterface, Runnable {
 			o.updateInstances();
 		}
 	}
+
 }

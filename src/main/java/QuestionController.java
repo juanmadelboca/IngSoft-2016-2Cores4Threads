@@ -18,7 +18,7 @@ public class QuestionController implements ControllerInterface {
     }
 
 
-    public QuestionController(ModelInterface model,DJView view) {
+    public QuestionController(QuestionModelInterface model,DJView view) {
 		// TODO Auto-generated constructor stub
     	this.model = (QuestionModelInterface) model;
     	this.view = view;

@@ -1,7 +1,7 @@
 package main.java;
 
 
-public interface QuestionModelInterface extends ModelInterface {
+public interface QuestionModelInterface  {
 
 	void initialize();
 

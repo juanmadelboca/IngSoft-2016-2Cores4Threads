@@ -1,6 +1,6 @@
 package main.java;
 
-public interface HeartModelInterface extends ModelInterface {
+public interface HeartModelInterface  {
 	int getHeartRate();
 	
 	int getInstancesNumber();
