@@ -4,22 +4,21 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class HeartView extends DJView implements InstancesObserver{
-	HeartModel Hmodel;
 	JLabel instancesLabel;
 	
-	public HeartView(ControllerInterface controller, BeatModelInterface model, HeartModel Hmodel) {
+	public HeartView(ControllerInterface controller, BeatModelInterface model) {
 		super(controller, model);
-		this.Hmodel = Hmodel;
-		Hmodel.registerObserver((InstancesObserver)this);
+		model= (HeartAdapter) model;
+		((HeartAdapter) model).registerObserver((InstancesObserver)this);
 	}
 
 	public void createView(){
 		super.createView();
-		instancesLabel = new JLabel("Instancias: "+String.valueOf(Hmodel.getInstancesNumber()),SwingConstants.CENTER);
+		instancesLabel = new JLabel("Instancias: "+String.valueOf(((HeartAdapter) model).getInstancesNumber()),SwingConstants.CENTER);
 		bpmPanel.add(instancesLabel);
 	}
 	public void updateInstances(){
-		instancesLabel.setText("Instancias: "+String.valueOf(Hmodel.getInstancesNumber()));
+		instancesLabel.setText("Instancias: "+String.valueOf(((HeartAdapter) model).getInstancesNumber()));
 	}
 
 }

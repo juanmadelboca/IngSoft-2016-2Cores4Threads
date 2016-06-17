@@ -39,4 +39,13 @@ public class HeartAdapter implements BeatModelInterface {
 	public HeartModelInterface getModel(){
 		return heart;
 	}
+	public void registerObserver(InstancesObserver o) {
+		heart.registerObserver(o);
+	}
+	public void removeObserver(InstancesObserver o) {
+		heart.removeObserver(o);
+	}
+	public int getInstancesNumber(){
+		return heart.getInstancesNumber();
+	}
 }

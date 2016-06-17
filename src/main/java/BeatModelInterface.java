@@ -1,6 +1,6 @@
 package main.java;
  
-public interface BeatModelInterface extends ModelInterface {
+public interface BeatModelInterface {
 	void initialize();
   
 	void on();
