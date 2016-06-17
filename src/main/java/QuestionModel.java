@@ -246,4 +246,11 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		
 	}
 }
+
+	@Override
+	public void Stop() 
+	{
+		Thread.interrupted();
+		notifyBPMObserver();
 	}
+}

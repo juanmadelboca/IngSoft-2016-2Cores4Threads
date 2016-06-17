@@ -13,29 +13,29 @@ public class HeartModel implements HeartModelInterface, Runnable {
 	Random random = new Random(System.currentTimeMillis());
 	Thread thread;
 	
-	static HeartModel corazon=null;			//singleton
-	static int Instancias = 0; 
+	static HeartModel heart=null;			//singleton
+	static int Instances = 0; 
 
 	private HeartModel() {					//singleton
 		thread = new Thread(this);
 		thread.start();
-		corazon = this;
+		heart = this;
 	}
 	
 	public static HeartModel getInstance(){	//Singleton
 		try{
-			Instancias++;
-			corazon.equals(corazon);
+			Instances++;
+			heart.equals(heart);
 		}catch(NullPointerException e){
-			corazon = new HeartModel();
+			heart = new HeartModel();
 		}finally{
 			notifyInstancesObservers();
 		}
-		return corazon;
+		return heart;
 	}
 	
 	public int getInstancesNumber(){
-		return Instancias;
+		return Instances;
 	}
 
 	int lastrate = -1;

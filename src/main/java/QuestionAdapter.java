@@ -46,4 +46,10 @@ public class QuestionAdapter implements BeatModelInterface {
         model.removeObserver(o);
     }
 
+
+	public QuestionModelInterface getModel() {
+		// TODO Auto-generated method stub
+		return model;
+	}
+
 }

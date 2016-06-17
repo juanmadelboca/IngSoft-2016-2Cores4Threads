@@ -1,7 +1,7 @@
 package main.java;
 
 
-public interface QuestionModelInterface {
+public interface QuestionModelInterface extends ModelInterface {
 
 	void initialize();
 
@@ -46,5 +46,7 @@ public interface QuestionModelInterface {
 	void registerObserver(QuestionObserver o);
 
 	void removeObserver(QuestionObserver o);
+
+	void Stop();
 
 }
