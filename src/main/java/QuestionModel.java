@@ -33,29 +33,27 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	@SuppressWarnings("unchecked")
 	private void load() {
 		boolean carga = true;
-		ObjectInputStream entrada = null;
+		//ObjectInputStream entrada = null;
 		try {
-			entrada = new ObjectInputStream(new FileInputStream("base.obj"));
-		} catch (IOException e) {
-			System.out.println("No existe la base");
+			FileInputStream fileIn = new FileInputStream(new File("base.obj"));
+			ObjectInputStream entrada = new ObjectInputStream(fileIn);
+			questions = (ArrayList<Question>) entrada.readObject();
+			entrada.close();
+		} 
+		catch (FileNotFoundException e) {
+			System.out.println("No existe la base o el objeto se procede a crearla");
+		}
+		 catch (ClassNotFoundException e ) {
+			System.out.println("No existe el objeto en la base");
 			e.printStackTrace();
 			carga = false;
-		}
-		try {
-			questions = (ArrayList<Question>) entrada.readObject();
-		} catch (ClassNotFoundException | IOException e) {
-			System.out.println("No existe el objeto en la base");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			carga = false;
 		}
 
-		try {
-			entrada.close();
-		} catch (IOException e) {
-			System.out.println("No puedo cerrar el objeto");
-			e.printStackTrace();
-			carga = false;
-		}
+		
 
 		if (carga)
 			System.out.println("Carga con exito");
