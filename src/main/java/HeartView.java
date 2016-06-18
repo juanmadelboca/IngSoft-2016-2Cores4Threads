@@ -8,7 +8,6 @@ public class HeartView extends DJView implements InstancesObserver{
 	
 	public HeartView(ControllerInterface controller, BeatModelInterface model) {
 		super(controller, model);
-		model= (HeartAdapter) model;
 		((HeartAdapter) model).registerObserver((InstancesObserver)this);
 	}
 

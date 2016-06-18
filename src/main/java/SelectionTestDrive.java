@@ -4,9 +4,9 @@ public class SelectionTestDrive {
 
 	public static void main(String[] args)
 	{
-		QuestionModel model = new QuestionModel();
-		@SuppressWarnings("unused")
-		SelectionController controller= new SelectionController(model);
+		BeatModelInterface model= new BeatModel();
+		ControllerInterface controller= new BeatController(model);
+		SelectionView view = new SelectionView(controller,model);
 
 		
 	}

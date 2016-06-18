@@ -10,19 +10,13 @@ public class QuestionController implements ControllerInterface {
 		view = new DJView(this, new QuestionAdapter(model));
         view.createView();
         view.createControls();
+        view.setTitle("QuestionView");
         model.initialize();
         view.disableStopMenuItem();
         view.disableStartMenuItem();
         qview= new QuestionView(this, model);
 
     }
-
-
-    public QuestionController(QuestionModelInterface qModel,DJView view) {
-		// TODO Auto-generated constructor stub
-    	this.model = qModel;
-    	this.view = view;
-	}
 
 	public void start() {
     	model.nextQuestion();
@@ -61,6 +55,10 @@ public class QuestionController implements ControllerInterface {
     public void addQuestion(String question, String[] answer, String trueAnswer) {
     	Question quest= new Question(question,answer,trueAnswer);
         model.addQuestion(quest);
+    }
+    public void showBeatBar(boolean show)
+    {
+    	view.showBeatBar(show);
     }
 
 }
