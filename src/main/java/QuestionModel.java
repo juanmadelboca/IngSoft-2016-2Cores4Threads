@@ -99,12 +99,19 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	public void nextQuestion() {
+		if(!questions.isEmpty()){
 		Random rnd = new Random();
 		int valor = (int) (rnd.nextDouble() * questions.size());
 		question = questions.get(valor);
+		questions.remove(valor);
 		notifyQuestionObserver();
 		start=true;
-	}
+		}else
+		{
+			// ACA TENEMOS QUE AGREGAR QUE DEBE HACER EL PROGRAMA CUANDO SE ACABEN LAS PREGUNTAS
+			
+		}
+		}
 
 	public String getQuestion() {
 		
