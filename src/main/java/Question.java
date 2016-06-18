@@ -13,11 +13,16 @@ public class Question implements Serializable{
 
     private String trueAnswer;
 
-    public Question(String question, String[] answer, String trueAnswer) {
+    public Question(String question, String[] answer, String trueAnswer) throws Exception {
         // TODO implement here
-        this.question=question;
-        this.answer=answer;
-        this.trueAnswer=trueAnswer;
+       	if(question.equals("")||answer[0].equals("")||answer[1].equals("")||answer[2].equals("")||answer[3].equals("")||trueAnswer.equals("")){
+    		
+            throw new Exception();
+    	}else{
+    		this.question=question;
+            this.answer=answer;
+            this.trueAnswer=trueAnswer;
+        }
     }
 
     public String getQuestion() {

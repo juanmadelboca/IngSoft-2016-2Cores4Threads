@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
@@ -171,8 +172,14 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 				respuesta[1] = textField_3.getText();
 				respuesta[2] = textField_4.getText();
 				respuesta[3] = textField_5.getText();
-
+				try{
 				((QuestionController) controller).addQuestion(textField_1.getText(), respuesta, textField_6.getText());
+				}catch(Exception e){
+					 JOptionPane.showMessageDialog( null, "Debe ingresar Todos las respuestas y la pregunta" );
+					
+					
+				}
+				finally{
 				textField_1.setText("");
 				textField_2.setText("");
 				textField_3.setText("");
@@ -180,7 +187,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 				textField_5.setText("");
 				textField_6.setText("");
 
-			}
+			}}
 		});
 
 		panel_1 = new JPanel();
