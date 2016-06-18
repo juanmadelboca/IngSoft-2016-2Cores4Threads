@@ -1,6 +1,5 @@
 package main.java;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -55,7 +54,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 	private JTextField textField_6;
 	private String answer;
 
-    public QuestionView(QuestionController controller, QuestionModelInterface model) {
+    public QuestionView(ControllerInterface controller, QuestionModelInterface model) {
     	this.controller= controller;
     	this.model= model;
     	model.registerObserver((BPMObserver)this);
@@ -63,14 +62,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
     	model.registerObserver((QuestionObserver)this);
     	createControls();
     }
-    public QuestionView(SelectionController controller, QuestionModelInterface model) {
-    	this.controller= controller;
-    	this.model= model;
-    	model.registerObserver((BPMObserver)this);
-    	model.registerObserver((BeatObserver)this);
-    	model.registerObserver((QuestionObserver)this);
-    	createControls();
-    }
+
     private void initialize(){
     	controller.start();
 	}
