@@ -52,7 +52,7 @@ public class QuestionController implements ControllerInterface {
         model.setName(name);
     }
 
-    public void addQuestion(String question, String[] answer, String trueAnswer) {
+    public void addQuestion(String question, String[] answer, String trueAnswer) throws Exception {
     	Question quest= new Question(question,answer,trueAnswer);
         model.addQuestion(quest);
     }

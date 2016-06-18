@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
@@ -171,8 +172,14 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 				respuesta[1] = textField_3.getText();
 				respuesta[2] = textField_4.getText();
 				respuesta[3] = textField_5.getText();
-
+				try{
 				((QuestionController) controller).addQuestion(textField_1.getText(), respuesta, textField_6.getText());
+				}catch(Exception e){
+					 JOptionPane.showMessageDialog( null, "Debe ingresar Todos las respuestas y la pregunta" );
+					
+					
+				}
+				finally{
 				textField_1.setText("");
 				textField_2.setText("");
 				textField_3.setText("");
@@ -180,7 +187,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 				textField_5.setText("");
 				textField_6.setText("");
 
-			}
+			}}
 		});
 
 		panel_1 = new JPanel();
@@ -232,6 +239,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		panel_1.add(rdbtnNewRadioButton);
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				if (rdbtnNewRadioButton.isSelected()) {
 					rdbtnNewRadioButton_1.setEnabled(false);
 					rdbtnNewRadioButton_2.setEnabled(false);
@@ -241,6 +249,8 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 					rdbtnNewRadioButton_1.setEnabled(true);
 					rdbtnNewRadioButton_2.setEnabled(true);
 					rdbtnNewRadioButton_3.setEnabled(true);
+					answer=null;
+					
 				}
 
 			}
@@ -260,6 +270,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 					rdbtnNewRadioButton.setEnabled(true);
 					rdbtnNewRadioButton_2.setEnabled(true);
 					rdbtnNewRadioButton_3.setEnabled(true);
+					answer=null;
 				}
 
 			}
@@ -279,6 +290,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 					rdbtnNewRadioButton.setEnabled(true);
 					rdbtnNewRadioButton_1.setEnabled(true);
 					rdbtnNewRadioButton_3.setEnabled(true);
+					answer=null;
 				}
 
 			}
@@ -294,10 +306,12 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 					rdbtnNewRadioButton_2.setEnabled(false);
 					rdbtnNewRadioButton_1.setEnabled(false);
 					answer = rdbtnNewRadioButton_3.getText();
+
 				} else {
 					rdbtnNewRadioButton.setEnabled(true);
 					rdbtnNewRadioButton_2.setEnabled(true);
 					rdbtnNewRadioButton_1.setEnabled(true);
+					answer=null;
 				}
 
 			}
@@ -308,7 +322,10 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		panel_1.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if (answer!=null){
 				((QuestionController) controller).send(answer);
+				answer=null;
+				}
 			}
 		});
 
