@@ -322,11 +322,10 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		panel_1.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (answer!=null)
-					System.out.println(answer);
+				if (answer!=null){
 				((QuestionController) controller).send(answer);
 				answer=null;
-				
+				}
 			}
 		});
 
