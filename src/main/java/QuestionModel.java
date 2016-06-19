@@ -35,14 +35,15 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		boolean carga = true;
 		try {
 			//cargo las preguntas y los highScores
-			FileInputStream fileIn2 = new FileInputStream(new File("highScores.obj"));
-			ObjectInputStream entrada2 = new ObjectInputStream(fileIn2);
-			highScores = (HashMap<String, Integer>) entrada2.readObject();
-			entrada2.close();
+			
 			FileInputStream fileIn = new FileInputStream(new File("base.obj"));
 			ObjectInputStream entrada = new ObjectInputStream(fileIn);
 			questions = (ArrayList<Question>) entrada.readObject();
 			entrada.close();
+			FileInputStream fileIn2 = new FileInputStream(new File("highScores.obj"));
+			ObjectInputStream entrada2 = new ObjectInputStream(fileIn2);
+			highScores = (HashMap<String, Integer>) entrada2.readObject();
+			entrada2.close();
 			
 		} 
 		catch (FileNotFoundException e) {
@@ -123,6 +124,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		}else
 		{
 			// ACA TENEMOS QUE AGREGAR QUE DEBE HACER EL PROGRAMA CUANDO SE ACABEN LAS PREGUNTAS
+			System.out.println("VACIO");
 			question=null;
 			highScores.put(player, score);
 			saveScore();
@@ -133,6 +135,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	public String getQuestion() {
 		if(question==null){
+			System.out.println("Arranca null");
 			return  null;
 		}else{
 		return question.getQuestion();
