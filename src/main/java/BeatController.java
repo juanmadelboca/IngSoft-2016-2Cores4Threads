@@ -51,4 +51,9 @@ public class BeatController implements ControllerInterface {
     {
     	view.showBeatBar(show);
     }
+ 	
+ 	public void showControl(boolean show)
+ 	{
+ 		view.showControl(show);
+ 	}
 }

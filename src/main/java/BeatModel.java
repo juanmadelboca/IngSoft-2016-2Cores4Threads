@@ -9,7 +9,7 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
     Sequencer sequencer;
 	ArrayList<BeatObserver> beatObservers = new ArrayList<BeatObserver>();
 	ArrayList<BPMObserver> bpmObservers = new ArrayList<BPMObserver>();
-    int bpm = 90;
+    int bpm = 0;
     Sequence sequence;
     Track track;
  
@@ -20,7 +20,6 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
  
     public void on() {
         sequencer.start();
-        setBPM(90);
     }
  
     public void off() {

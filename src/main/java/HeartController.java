@@ -30,4 +30,9 @@ public class HeartController implements ControllerInterface {
     {
     	view.showBeatBar(show);
     }
+ 	
+ 	public void showController(boolean show)
+ 	{
+ 		view.showControl(show);
+ 	}
 }

@@ -60,5 +60,13 @@ public class QuestionController implements ControllerInterface {
     {
     	view.showBeatBar(show);
     }
+    public void showControl(boolean show){
+    	view.showControl(show);
+    }
+    
+    public void showQuestion(boolean show)
+    {
+    	qview.showQuestion(show);
+    }
 
 }

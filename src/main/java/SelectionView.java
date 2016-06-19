@@ -28,6 +28,10 @@ public class SelectionView extends DJView {
 		BController.showBeatBar(false);
 		HController.showBeatBar(false);
 		QController.showBeatBar(false);
+		BController.showControl(false);
+		QController.showControl(false);
+		QController.showQuestion(false);
+		HController.showController(false);
 		HAdapter= new HeartAdapter(HModel);
 		QAdapter= new QuestionAdapter(QModel);
 		createView();
@@ -41,6 +45,7 @@ public class SelectionView extends DJView {
 		comboBox.addActionListener(this);
 		bpmPanel.add(comboBox, BorderLayout.CENTER);
 		viewFrame.setSize(150, 80);
+		viewFrame.pack();
 	}
 
 	public void createControls() {
@@ -58,10 +63,22 @@ public class SelectionView extends DJView {
 	public void actionPerformed(ActionEvent event) {
 		if (comboBox.getSelectedIndex() == 0) {
 			setControllerBeat();
+			BController.showControl(true);
+			QController.showControl(false);
+			QController.showQuestion(false);
+			HController.showController(false);
 		} else if (comboBox.getSelectedIndex() == 1) {
 			setControllerHeart();
+			BController.showControl(false);
+			QController.showControl(false);
+			QController.showQuestion(false);
+			HController.showController(true);
 		} else if (comboBox.getSelectedIndex() == 2) {
 			setControllerQuestion();
+			BController.showControl(false);
+			QController.showControl(true);
+			QController.showQuestion(true);
+			HController.showController(false);
 		}
 	}
 

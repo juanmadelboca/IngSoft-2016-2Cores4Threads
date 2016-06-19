@@ -182,4 +182,8 @@ public class DJView implements ActionListener, BeatObserver, BPMObserver {
 	public void showBeatBar(boolean show) {
 		viewFrame.setVisible(show);
 	}
+	
+	public void showControl(boolean show){
+		controlFrame.setVisible(show);
+	}
 }

@@ -407,6 +407,10 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 			}
 		});
 	}
+	
+	public void showQuestion(boolean show){
+		frmcoresthreads.setVisible(show);
+	}
 
 
 
