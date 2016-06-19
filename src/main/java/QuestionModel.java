@@ -35,14 +35,15 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		boolean carga = true;
 		try {
 			//cargo las preguntas y los highScores
-			FileInputStream fileIn = new FileInputStream(new File("base.obj"));
-			ObjectInputStream entrada = new ObjectInputStream(fileIn);
-			questions = (ArrayList<Question>) entrada.readObject();
-			entrada.close();
 			FileInputStream fileIn2 = new FileInputStream(new File("highScores.obj"));
 			ObjectInputStream entrada2 = new ObjectInputStream(fileIn2);
 			highScores = (HashMap<String, Integer>) entrada2.readObject();
 			entrada2.close();
+			FileInputStream fileIn = new FileInputStream(new File("base.obj"));
+			ObjectInputStream entrada = new ObjectInputStream(fileIn);
+			questions = (ArrayList<Question>) entrada.readObject();
+			entrada.close();
+			
 		} 
 		catch (FileNotFoundException e) {
 			System.out.println("No existe la base o el objeto se procede a crearla");
@@ -63,21 +64,14 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			System.out.println("Carga con exito");
 	}
 
-	private void save() {
+	private void saveScore(){
+
 		boolean guardar = true;
-		ObjectOutputStream salida = null;
 		try {
 			//guardo preguntas
-			salida = new ObjectOutputStream(new FileOutputStream("base.obj"));
-			salida.writeObject(questions);
-			salida.close();
-			//guardo highScores
-			salida = new ObjectOutputStream(new FileOutputStream("highScores.obj"));
+			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("highScores.obj"));
 			salida.writeObject(highScores);
-			salida.close();
-
-		}
-	
+			salida.close();}
 		catch (FileNotFoundException e) {
 			System.out.println("No existe la base o el objeto se procede a crearla");
 		}
@@ -86,10 +80,26 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			e.printStackTrace();
 			guardar = false;
 		}
-		if (guardar)
-			System.out.println("Guardado con exito");
 	}
 
+	private void save() {
+		boolean guardar = true;
+		try {
+			//guardo preguntas
+			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("base.obj"));
+			salida.writeObject(questions);
+			salida.close();}
+		catch (FileNotFoundException e) {
+			System.out.println("No existe la base o el objeto se procede a crearla");
+		}
+		 catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			guardar = false;
+		}
+		
+	
+	}
 	public void addQuestion(Question quest) {
 		questions.add(quest);
 		save();
@@ -113,13 +123,20 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		}else
 		{
 			// ACA TENEMOS QUE AGREGAR QUE DEBE HACER EL PROGRAMA CUANDO SE ACABEN LAS PREGUNTAS
-			
+			question=null;
+			highScores.put(player, score);
+			saveScore();
+			System.out.println(getHighScores());
+			notifyQuestionObserver();
 		}
 		}
 
 	public String getQuestion() {
-		
+		if(question==null){
+			return  null;
+		}else{
 		return question.getQuestion();
+		}
 	}
 
 	public String[] getAnswer() {
@@ -135,8 +152,18 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	public String getHighScores() {
-		// TODO implement here
-		return highScores.toString();
+
+		Iterator it = highScores.entrySet().iterator();
+		StringBuffer sb= new StringBuffer();
+
+		sb.append("Player"+"				"+"| Points"	+"\n");
+		sb.append("---------------------------------------------------------------------------------------------------------------"+"\n");
+		while (it.hasNext()) {
+		Map.Entry e = (Map.Entry)it.next();
+		sb.append(e.getKey()+"				"+e.getValue()	+"\n");
+		}
+		
+		return sb.toString();
 	}
 
 	public int getScore() {
@@ -256,6 +283,10 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			
 		
 	}
+		question=null;
+		notifyQuestionObserver();
+	//aca el codigo de que hacer cuando se acaba el tiempo
+		
 }
 
 	@Override

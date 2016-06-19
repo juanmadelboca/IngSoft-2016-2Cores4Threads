@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
@@ -54,6 +55,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private String answer;
+	private	JTextArea txtHighScore;
 
     public QuestionView(ControllerInterface controller, QuestionModelInterface model) {
     	this.controller= controller;
@@ -81,6 +83,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
     }
 	
 	private void nextQuestion(){
+		if(model.getQuestion()!=null){
 		textPane.setText(model.getQuestion());
 		String array[]= model.getAnswer();
 		rdbtnNewRadioButton.setText(array[0]);
@@ -98,12 +101,35 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		rdbtnNewRadioButton.repaint();
 		rdbtnNewRadioButton_1.repaint();
 		rdbtnNewRadioButton_2.repaint();
-		rdbtnNewRadioButton_3.repaint();
+		rdbtnNewRadioButton_3.repaint();	
 		txtpnTiempoRestante.setText("Tiempo restante: " + Integer.toString(model.getTime()));
 		txtpnTiempoRestante.setEnabled(true);
 		txtScore.setText("Score: "+ Integer.toString(model.getScore()));
 		txtScore.repaint();
 		textPane.setEnabled(true);
+		}else{
+			txtHighScore = new JTextArea();
+			txtHighScore.setEnabled(false);
+			txtHighScore.setBackground(SystemColor.inactiveCaptionBorder);
+			txtHighScore.setBounds(10, 10, 400, 200);
+			panel_1.add(txtHighScore);
+			txtHighScore.setEditable(false);
+			txtHighScore.setVisible(false);
+			textPane.setVisible(false);
+			separator.setVisible(false);
+			
+			btnSaltar.setVisible(false);
+			btnNewButton.setVisible(false);
+			rdbtnNewRadioButton.setVisible(false);;
+			rdbtnNewRadioButton_1.setVisible(false);
+			rdbtnNewRadioButton_2.setVisible(false);
+			rdbtnNewRadioButton_3.setVisible(false);
+			txtScore.setVisible(false);
+			txtpnTiempoRestante.setVisible(false);
+			
+			txtHighScore.setVisible(true);
+			txtHighScore.setText(model.getHighScores());
+		}
 	}
 	
 	private void createControls() {
@@ -113,6 +139,8 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		frmcoresthreads.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmcoresthreads.getContentPane().setLayout(null);
 		frmcoresthreads.setVisible(true);
+		
+		
 
 		pregunta = new JDialog(frmcoresthreads, "Nueva Pregunta");
 		pregunta.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
