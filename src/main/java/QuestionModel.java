@@ -124,15 +124,17 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		}else
 		{
 			// ACA TENEMOS QUE AGREGAR QUE DEBE HACER EL PROGRAMA CUANDO SE ACABEN LAS PREGUNTAS
-			System.out.println("VACIO");
-			highScores.put(player, score);
-			System.out.println(getHighScores());
-			saveScore();
-			question=null;
-			notifyQuestionObserver();
+			finishGame();
 		}
 		}
 
+	private	void finishGame(){
+		highScores.put(player, score);
+		System.out.println(getHighScores());
+		saveScore();
+		question=null;
+		notifyQuestionObserver();
+	}
 	public String getQuestion() {
 		if(question==null){
 			System.out.println("Arranca null");
@@ -286,8 +288,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			
 		
 	}
-		question=null;
-		notifyQuestionObserver();
+		finishGame();
 	//aca el codigo de que hacer cuando se acaba el tiempo
 		
 }
