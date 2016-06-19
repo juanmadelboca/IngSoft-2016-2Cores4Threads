@@ -67,6 +67,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	private void saveScore(){
 
+		@SuppressWarnings("unused")
 		boolean guardar = true;
 		try {
 			//guardo preguntas
@@ -84,6 +85,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	private void save() {
+		@SuppressWarnings("unused")
 		boolean guardar = true;
 		try {
 			//guardo preguntas
@@ -156,12 +158,14 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	public String getHighScores() {
 
+		@SuppressWarnings("rawtypes")
 		Iterator it = highScores.entrySet().iterator();
 		StringBuffer sb= new StringBuffer();
 
 		sb.append("Player"+"				"+"| Points"	+"\n");
 		sb.append("---------------------------------------------------------------------------------------------------------------"+"\n");
 		while (it.hasNext()) {
+		@SuppressWarnings("rawtypes")
 		Map.Entry e = (Map.Entry)it.next();
 		sb.append(e.getKey()+"				"+e.getValue()	+"\n");
 		}
