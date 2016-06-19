@@ -33,12 +33,16 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	@SuppressWarnings("unchecked")
 	private void load() {
 		boolean carga = true;
-		//ObjectInputStream entrada = null;
 		try {
+			//cargo las preguntas y los highScores
 			FileInputStream fileIn = new FileInputStream(new File("base.obj"));
 			ObjectInputStream entrada = new ObjectInputStream(fileIn);
 			questions = (ArrayList<Question>) entrada.readObject();
 			entrada.close();
+			FileInputStream fileIn2 = new FileInputStream(new File("highScores.obj"));
+			ObjectInputStream entrada2 = new ObjectInputStream(fileIn2);
+			highScores = (HashMap<String, Integer>) entrada2.readObject();
+			entrada2.close();
 		} 
 		catch (FileNotFoundException e) {
 			System.out.println("No existe la base o el objeto se procede a crearla");
@@ -63,22 +67,24 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		boolean guardar = true;
 		ObjectOutputStream salida = null;
 		try {
+			//guardo preguntas
 			salida = new ObjectOutputStream(new FileOutputStream("base.obj"));
-		} catch (IOException e) {
-			System.out.println("No existe la base");
-			e.printStackTrace();
-		}
-		try {
 			salida.writeObject(questions);
-		} catch (IOException e) {
-			System.out.println("No se pudo guardar el objeto");
-			e.printStackTrace();
-		}
-		try {
 			salida.close();
-		} catch (IOException e) {
-			System.out.println("No se pudo cerrar el objeto");
+			//guardo highScores
+			salida = new ObjectOutputStream(new FileOutputStream("highScores.obj"));
+			salida.writeObject(highScores);
+			salida.close();
+
+		}
+	
+		catch (FileNotFoundException e) {
+			System.out.println("No existe la base o el objeto se procede a crearla");
+		}
+		 catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+			guardar = false;
 		}
 		if (guardar)
 			System.out.println("Guardado con exito");
