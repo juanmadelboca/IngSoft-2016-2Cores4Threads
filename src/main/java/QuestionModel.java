@@ -16,6 +16,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	private ArrayList<QuestionObserver> questionObservers;
 	private Thread thread;
 	private boolean start;
+	private	boolean	finish;
 
 
 	public QuestionModel() {
@@ -28,6 +29,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		thread = new Thread(this);
 		score=0;
 		time=100;
+		thread.start();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -109,8 +111,10 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	public void initialize() {
 		load();
-		thread.start();
 		start=false;
+		score=0;
+		time=100;
+		finish=false;
 	}
 
 	public void nextQuestion() {
@@ -134,6 +138,8 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		saveScore();
 		question=null;
 		notifyQuestionObserver();
+		time=0;
+		finish=true;
 	}
 	public String getQuestion() {
 		if(question==null){
@@ -276,6 +282,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		while(true){
 		while(time!=0){
 			try {
 				Thread.sleep(1000);
@@ -288,7 +295,17 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			
 		
 	}
+
+		System.out.println("VIVO");
+		if(!finish)
 		finishGame();
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 	//aca el codigo de que hacer cuando se acaba el tiempo
 		
 }

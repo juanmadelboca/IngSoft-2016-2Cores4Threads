@@ -19,7 +19,9 @@ public class QuestionController implements ControllerInterface {
     }
 
 	public void start() {
-    	model.nextQuestion();
+
+        model.initialize();
+        model.nextQuestion();
         
     }
 

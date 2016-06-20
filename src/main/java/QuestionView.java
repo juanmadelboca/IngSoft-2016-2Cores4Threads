@@ -31,6 +31,7 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 	private JTextField txtScore;
 	private JTextField textField;
 	private JPanel panel_1;
+	private JPanel panel_2;
 	private JMenuBar menuBar;
 	private JMenu mnMenu;
 	private JMenuItem mntmNuevoJugador;
@@ -67,7 +68,9 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
     }
 
     private void initialize(){
+    	panel_2.setVisible(false);
     	controller.start();
+    	
 	}
     
     public void updateQuestion() {
@@ -108,27 +111,9 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		txtScore.repaint();
 		textPane.setEnabled(true);
 		}else{
-			txtHighScore = new JTextArea();
-			txtHighScore.setEnabled(false);
-			txtHighScore.setBackground(SystemColor.inactiveCaptionBorder);
-			txtHighScore.setBounds(10, 10, 400, 200);
-			panel_1.add(txtHighScore);
-			txtHighScore.setEditable(false);
-			txtHighScore.setVisible(false);
-			textPane.setVisible(false);
-			separator.setVisible(false);
 			
-			btnSaltar.setVisible(false);
-			btnNewButton.setVisible(false);
-			rdbtnNewRadioButton.setVisible(false);;
-			rdbtnNewRadioButton_1.setVisible(false);
-			rdbtnNewRadioButton_2.setVisible(false);
-			rdbtnNewRadioButton_3.setVisible(false);
-			txtScore.setVisible(false);
-			txtpnTiempoRestante.setVisible(false);
-			
-			txtHighScore.setVisible(true);
-			txtHighScore.setText(model.getHighScores());
+			showHighScores();		
+
 		}
 	}
 	
@@ -224,6 +209,24 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 		frmcoresthreads.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		panel_1.setVisible(false);
+		
+		panel_2 = new JPanel();
+		panel_2.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel_2.setBounds(10, 39, 444, 226);
+		frmcoresthreads.getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+		panel_2.setVisible(false);
+		
+		txtHighScore = new JTextArea();
+		txtHighScore.setEnabled(false);
+		txtHighScore.setBackground(SystemColor.inactiveCaptionBorder);
+		txtHighScore.setFont( new Font("Courier", Font.PLAIN,14));
+		
+		
+		txtHighScore.setBounds(10, 10, 400, 200);
+		panel_2.add(txtHighScore);
+		txtHighScore.setEditable(true);
+		txtHighScore.setVisible(true);
 
 		menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 464, 28);
@@ -407,10 +410,15 @@ public class QuestionView implements QuestionObserver, BeatObserver, BPMObserver
 			}
 		});
 	}
-	
-	public void showQuestion(boolean show){
-		frmcoresthreads.setVisible(show);
+	private void showHighScores(){
+		txtHighScore.setText(model.getHighScores());
+		panel_2.setVisible(true);
+		panel_1.setVisible(false);
+
 	}
+	public void showQuestion(boolean show){
+				frmcoresthreads.setVisible(show);
+			}
 
 
 
