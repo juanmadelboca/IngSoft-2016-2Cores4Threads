@@ -28,7 +28,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		dificulty = 0;
 		thread = new Thread(this);
 		score=0;
-		time=0;
+		time=500;
 		timeset=0;
 		thread.start();
 	}

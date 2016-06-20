@@ -17,9 +17,15 @@ QuestionModel m ;
 	public void test() {
 		QuestionModel m1 = new QuestionModel();
 		int i = 0;
+		boolean flag = false;
 		for(Question q:m1.getQuestions()){
-		assertNotEquals(m.getQuestions().get(i),q);
-		i++;
+			if(m.getQuestions().get(i) == q){
+			flag = true;
+			}
+			else 
+				flag = false;
+		    i++;
+		    assertTrue(flag);
 	}
 	}
 }
