@@ -16,7 +16,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	private ArrayList<QuestionObserver> questionObservers;
 	private Thread thread;
 	private boolean start;
-	private	boolean	finish;
+	public	boolean	finish;
 
 
 	public QuestionModel() {
