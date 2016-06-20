@@ -28,7 +28,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		dificulty = 0;
 		thread = new Thread(this);
 		score=0;
-		time=500;
+		time=0;
 		timeset=0;
 		thread.start();
 	}
@@ -308,5 +308,8 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	{
 		Thread.interrupted();
 		notifyBPMObserver();
+	}
+	public ArrayList<Question> getQuestions(){
+	return questions;
 	}
 }
