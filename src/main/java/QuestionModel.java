@@ -28,7 +28,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		dificulty = 0;
 		thread = new Thread(this);
 		score=0;
-		time=0;
+		time=500;
 		timeset=0;
 		thread.start();
 	}
@@ -57,6 +57,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			e.printStackTrace();
 			carga = false;
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			carga = false;
 		}
@@ -69,7 +70,6 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	private void saveScore(){
 
-		@SuppressWarnings("unused")
 		boolean guardar = true;
 		try {
 			//guardo preguntas
@@ -80,13 +80,13 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			System.out.println("No existe la base o el objeto se procede a crearla");
 		}
 		 catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			guardar = false;
 		}
 	}
 
 	private void save() {
-		@SuppressWarnings("unused")
 		boolean guardar = true;
 		try {
 			//guardo preguntas
@@ -97,6 +97,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			System.out.println("No existe la base o el objeto se procede a crearla");
 		}
 		 catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			guardar = false;
 		}
@@ -166,14 +167,12 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	public String getHighScores() {
 
-		@SuppressWarnings("rawtypes")
 		Iterator it = highScores.entrySet().iterator();
 		StringBuffer sb= new StringBuffer();
 
 		sb.append("Player"+"				"+"| Points"	+"\n");
 		sb.append("---------------------------------------------------------------------------------------------------------------"+"\n");
 		while (it.hasNext()) {
-		@SuppressWarnings("rawtypes")
 		Map.Entry e = (Map.Entry)it.next();
 		sb.append(e.getKey()+"				"+e.getValue()	+"\n");
 		}
@@ -187,6 +186,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	public String getName() {
+		// TODO implement here
 		return player;
 	}
 
@@ -207,17 +207,20 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 	
 	public void setTime(int time) {
+		// TODO implement here
 		this.time = time;
 		timeset= time;
 		notifyBPMObserver();
 	}
 
 	public void increaseTime() {
+		// TODO implement here
 		time++;
 		notifyBPMObserver();
 	}
 
 	public void decreaseTime() {
+		// TODO implement here
 		time--;
 		notifyBPMObserver();
 		notifyBeatObserver();
@@ -227,26 +230,32 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		return dificulty;
 	}
 	public void registerObserver(BeatObserver o) {
+		// TODO implement here
 		beatObservers.add(o);
 	}
 
 	public void removeObserver(BeatObserver o) {
+		// TODO implement here
 		beatObservers.remove(o);
 	}
 
 	public void registerObserver(BPMObserver o) {
+		// TODO implement here
 		bpmObservers.add(o);
 	}
 
 	public void removeObserver(BPMObserver o) {
+		// TODO implement here
 		bpmObservers.remove(o);
 	}
 
 	public void registerObserver(QuestionObserver o) {
+		// TODO implement here
 		questionObservers.add(o);
 	}
 
 	public void removeObserver(QuestionObserver o) {
+		// TODO implement here
 		questionObservers.remove(o);
 	}
 	public void notifyQuestionObserver(){
@@ -276,8 +285,9 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	@Override
 	public void run() {
+		// TODO Auto-generated method stub
 		while(true){
-		while(time!=0){
+		while(time>=0){
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -296,6 +306,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		}
@@ -308,8 +319,5 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	{
 		Thread.interrupted();
 		notifyBPMObserver();
-	}
-	public ArrayList<Question> getQuestions(){
-	return questions;
 	}
 }
