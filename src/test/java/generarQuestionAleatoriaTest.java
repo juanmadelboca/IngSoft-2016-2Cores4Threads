@@ -19,7 +19,8 @@ QuestionModel m ;
 		int i = 0;
 		boolean flag = false;
 		for(Question q:m1.getQuestions()){
-			if(m.getQuestions().get(i) == q){
+			m.nextQuestion();
+			if(m.getQuestion()!=q.getQuestion()){
 			flag = true;
 			}
 			else 
