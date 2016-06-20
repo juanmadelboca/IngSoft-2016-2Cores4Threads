@@ -11,7 +11,7 @@ public class SystemTest {
 
 	@Test
 	public void GameSystemTest() {
-		
+		long initialTime1 = System.currentTimeMillis();
 		QuestionModel model = new QuestionModel();
 		//QuestionController controller= new QuestionController(model);
 
@@ -23,7 +23,8 @@ public class SystemTest {
 		model.initialize();
 		int initialTime=model.getTime();
         model.nextQuestion();
-        
+        long finalTime1 = System.currentTimeMillis() - initialTime1;
+        assertTrue(finalTime1<=1000);
 		String answer=model.getTrueAnswer();
 		model.compare(answer);
     	model.nextQuestion();
