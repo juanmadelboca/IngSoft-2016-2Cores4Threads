@@ -295,8 +295,16 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			
 		
 	}
+
+		System.out.println("VIVO");
 		if(!finish)
 		finishGame();
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 	//aca el codigo de que hacer cuando se acaba el tiempo
 		
