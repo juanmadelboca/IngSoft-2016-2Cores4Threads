@@ -16,8 +16,12 @@ public class QuestionCorrectorTest {
 		model.nextQuestion();
 		
 		String respuesta=model.getTrueAnswer();
+
+		long tiempoInicio = System.currentTimeMillis();
 		boolean bool=model.compare(respuesta);
+		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		assertTrue(bool);
+		assertTrue(totalTiempo<=2000);
 	}
 	
 	@Test
@@ -36,9 +40,11 @@ public class QuestionCorrectorTest {
 				i++;
 			
 		}
-		
+		long tiempoInicio = System.currentTimeMillis();
 		boolean bool=model.compare(respuestas[i]);
+		long totalTiempo = System.currentTimeMillis() - tiempoInicio;
 		assertFalse(bool);
+		assertTrue(totalTiempo<=2000);
 	}
 
 }
