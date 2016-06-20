@@ -320,4 +320,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		Thread.interrupted();
 		notifyBPMObserver();
 	}
+	public ArrayList<Question>getQuestions(){
+		return questions;
+	}
 }
