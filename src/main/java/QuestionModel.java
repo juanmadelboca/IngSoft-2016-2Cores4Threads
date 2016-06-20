@@ -10,7 +10,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	private ArrayList<Question> questions;
 	private HashMap<String, Integer> highScores;
 	private Question question;
-	private int time, score;
+	private int time, score, timeset;
 	private ArrayList<BeatObserver> beatObservers;
 	private ArrayList<BPMObserver> bpmObservers;
 	private ArrayList<QuestionObserver> questionObservers;
@@ -28,7 +28,8 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		dificulty = 0;
 		thread = new Thread(this);
 		score=0;
-		time=100;
+		time=0;
+		timeset=0;
 		thread.start();
 	}
 
@@ -113,7 +114,9 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		load();
 		start=false;
 		score=0;
-		time=100;
+		if (timeset==0)
+			time=100;
+		else time=timeset;
 		finish=false;
 	}
 
@@ -206,6 +209,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	public void setTime(int time) {
 		// TODO implement here
 		this.time = time;
+		timeset= time;
 		notifyBPMObserver();
 	}
 
