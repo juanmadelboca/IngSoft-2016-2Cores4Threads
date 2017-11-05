@@ -32,7 +32,7 @@ public class CreateQuestionTest {
 		assertFalse("mario"==q.getTrueAnswer());
 	}
 	@Test
-	public void testGetAnswer(){
+	public void testGetQuestion(){
 		 Question q = null;
 			try {
 				q = new Question(a,respuestas,c);
@@ -114,4 +114,40 @@ public class CreateQuestionTest {
 		    fail("Se esperaba excepcion Exception");
 		  } catch(Exception e) {}
 }
+
+	@Test
+	public void testNullQuestionParameter(){
+		try {
+			String[] r =  {"franco","mario", "mariano", "messi"};
+			@SuppressWarnings("unused")
+			Question q = new Question("",r,c);
+		    fail("Se esperaba excepcion Exception");
+		  } catch(Exception e) {}
+}
+	@Test
+	public void testNullTrueAnswerParameter(){
+		try {
+			String[] r =  {"franco","mario", "mariano", "messi"};
+			@SuppressWarnings("unused")
+			Question q = new Question(a,r,"");
+		    fail("Se esperaba excepcion Exception");
+		  } catch(Exception e) {}
+}
+	@Test
+	public void testCreateNullQuestion(){
+			Question q = new Question();
+			assertNotEquals(q,null);
+}
+	@Test
+	public void testGetAnswer() {
+   	 Question q = null;
+		try {
+			q = new Question(a,respuestas,c);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(respuestas,q.getAnswer());
+	}
+	
 }
