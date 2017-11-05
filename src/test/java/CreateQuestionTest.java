@@ -136,7 +136,7 @@ public class CreateQuestionTest {
 	@Test
 	public void testCreateNullQuestion(){
 			Question q = new Question();
-			assertNotEquals(q,null);
+			assertTrue(q!=null);
 }
 	@Test
 	public void testGetAnswer() {
@@ -147,7 +147,7 @@ public class CreateQuestionTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertEquals(respuestas,q.getAnswer());
+		assertTrue(respuestas==q.getAnswer());
 	}
 	
 }
