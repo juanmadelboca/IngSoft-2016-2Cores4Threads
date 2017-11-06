@@ -10,6 +10,7 @@ repositories {
 }
 dependencies {
     testCompile 'junit:junit:4.10'
+    classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2"
 }
 
 checkstyle {
