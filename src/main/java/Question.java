@@ -18,8 +18,8 @@ public class Question implements Serializable {
     	if (question.equals("") || answer[0].equals("") ||
        			answer[1].equals("") || answer[2].equals("") ||
        			answer[3].equals("") || trueAnswer.equals("")) {
-    		
-            throw new Exception();
+
+    		throw new Exception();
     	} else {
     		this.question = question;
             this.answer = answer;

@@ -1,7 +1,8 @@
 package main.java;
-
+//CHECKSTYLE:OFF
 import java.io.*;
 import java.util.*;
+//CHECKSTYLE:ON
 
 public class QuestionModel implements QuestionModelInterface, Runnable {
 
@@ -49,7 +50,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("No existe la base o el objeto se procede a crearla");
-		} catch (ClassNotFoundException e ) {
+		} catch (ClassNotFoundException e) {
 			System.out.println("No existe el objeto en la base");
 			e.printStackTrace();
 			carga = false;
@@ -67,7 +68,8 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		boolean guardar = true;
 		try {
 			//guardo preguntas
-			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("highScores.obj"));
+			ObjectOutputStream salida = new ObjectOutputStream(
+					new FileOutputStream("highScores.obj"));
 			salida.writeObject(highScores);
 			salida.close();
 			} catch (FileNotFoundException e) {
@@ -83,7 +85,8 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		boolean guardar = true;
 		try {
 			//guardo preguntas
-			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("base.obj"));
+			ObjectOutputStream salida = new ObjectOutputStream(
+					new FileOutputStream("base.obj"));
 			salida.writeObject(questions);
 			salida.close();
 			} catch (FileNotFoundException e) {
@@ -92,7 +95,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			guardar = false;
-		}
+			}
 	}
 	
 	public void addQuestion(Question quest) {
@@ -111,7 +114,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	public void nextQuestion() {
-		if(!questions.isEmpty()){
+		if (!questions.isEmpty()) {
 		Random rnd = new Random();
 		int valor = (int) (rnd.nextDouble() * questions.size());
 		question = questions.get(valor);
@@ -119,7 +122,8 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		notifyQuestionObserver();
 		start = true;
 		} else {
-			// ACA TENEMOS QUE AGREGAR QUE DEBE HACER EL PROGRAMA CUANDO SE ACABEN LAS PREGUNTAS
+			// ACA TENEMOS QUE AGREGAR QUE DEBE 
+			//HACER EL PROGRAMA CUANDO SE ACABEN LAS PREGUNTAS
 			finishGame();
 		}
 	}
@@ -135,7 +139,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 	
 	public String getQuestion() {
-		if(question == null){
+		if (question == null) {
 			System.out.println("Arranca null");
 			return  null;
 		} else {
@@ -157,17 +161,16 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 
 	public String getHighScores() {
 		Iterator it = highScores.entrySet().iterator();
-		StringBuffer sb= new StringBuffer();
+		StringBuffer sb	= new StringBuffer();
 
-		sb.append("Player"+"				"+"| Points"	+"\n");
-		sb.append("----------------------------------------------"+
-		"----------------------------------------------------"+
-				"-------------"+"\n");
+		sb.append("Player" + "				" + "| Points" + "\n");
+		sb.append("----------------------------------------------" +
+				"----------------------------------------------------" +
+				"-------------" + "\n");
 		while (it.hasNext()) {
-		Map.Entry e = (Map.Entry)it.next();
-		sb.append(e.getKey()+"				"+e.getValue()	+"\n");
+			Map.Entry e = (Map.Entry)it.next();
+			sb.append(e.getKey() + "				" + e.getValue() + "\n");
 		}
-		
 		return sb.toString();
 	}
 
@@ -193,14 +196,14 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		score = score + 100;
 	}
 
-	public int getTime (){
+	public int getTime() {
 		return time;
 	}
 	
 	public void setTime(int time) {
 		// TODO implement here
 		this.time = time;
-		timeset= time;
+		timeset = time;
 		notifyBPMObserver();
 	}
 
@@ -217,10 +220,10 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		notifyBeatObserver();
 	}
 	
-    public int getDificulty() {
+	public int getDificulty() {
 		return dificulty;
 	}
-    
+
 	public void registerObserver(BeatObserver o) {
 		// TODO implement here
 		beatObservers.add(o);
@@ -250,27 +253,28 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		// TODO implement here
 		questionObservers.remove(o);
 	}
-	
+
 	public void notifyQuestionObserver() {
 		int i = 0;
-		while( i < questionObservers.size()){
-			QuestionObserver observer= questionObservers.get(i);
+		while (i < questionObservers.size()) {
+			QuestionObserver observer = questionObservers.get(i);
 			observer.updateQuestion();
 			i++;
 		}
 	}
-	
+
 	public void notifyBPMObserver(){
 		int i = 0;
-		while( i < bpmObservers.size()){
+		while ( i < bpmObservers.size()) {
 			BPMObserver observer = bpmObservers.get(i);
 			observer.updateBPM();
 			i++;
 		}
 	}
+	
 	public void notifyBeatObserver(){
 		int i = 0;
-		while( i < beatObservers.size()){
+		while (i < beatObservers.size()) {
 			BeatObserver observer= beatObservers.get(i);
 			observer.updateBeat();
 			i++;
@@ -280,8 +284,8 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		while(true){
-			while(time >= 0){
+		while (true) {
+			while (time >= 0) {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -291,7 +295,7 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 					decreaseTime();
 			}
 	
-			if(!finish)
+			if (!finish)
 				finishGame();
 			try {
 				Thread.sleep(500);

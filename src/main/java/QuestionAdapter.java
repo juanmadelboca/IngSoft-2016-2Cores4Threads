@@ -1,7 +1,7 @@
 package main.java;
 
 public class QuestionAdapter implements BeatModelInterface {
-	
+
 	QuestionModelInterface model;
 
     public QuestionAdapter(QuestionModelInterface model) {

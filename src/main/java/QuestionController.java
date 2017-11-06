@@ -21,7 +21,7 @@ public class QuestionController implements ControllerInterface {
 	public void start() {
         model.initialize();
         model.nextQuestion();
-        
+
 	}
 
     public void stop() {
@@ -60,11 +60,11 @@ public class QuestionController implements ControllerInterface {
     public void showBeatBar(boolean show) {
     	view.showBeatBar(show);
     }
-    
+
     public void showControl(boolean show) {
     	view.showControl(show);
     }
-    
+
     public void showQuestion(boolean show) {
     	qview.showQuestion(show);
     }
