@@ -5,6 +5,7 @@
 
 <suppressions>
   <suppress checks="[a-zA-Z0-9]*" files="R\.java" />
+  <suppress checks="." files="src[\\/]test[\\/]"/>
   <suppress checks="." files="src[\\/]main[\\/]java[\\/]BeatBar.java"/>
   <suppress checks="." files="src[\\/]main[\\/]java[\\/]BeatController.java"/>
   <suppress checks="." files="src[\\/]main[\\/]java[\\/]BeatModel.java"/>
