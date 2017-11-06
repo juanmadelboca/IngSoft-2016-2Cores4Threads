@@ -5,7 +5,7 @@ public class QuestionController implements ControllerInterface {
 	DJView view;
 	QuestionView qview;
 
-    public QuestionController(QuestionModelInterface model) {
+	public QuestionController(QuestionModelInterface model) {
     	this.model = model;
 		view = new DJView(this, new QuestionAdapter(model));
         view.createView();

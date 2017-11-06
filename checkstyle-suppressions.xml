@@ -28,5 +28,6 @@
   <suppress checks="." files="src[\\/]main[\\/]java[\\/]QuestionModelInterface.java"/>
   <suppress checks="." files="src[\\/]main[\\/]java[\\/]QuestionObserver.java"/>
   <suppress checks="." files="src[\\/]main[\\/]java[\\/]QuestionView.java"/>
+  <suppress checks="." files="src[\\/]main[\\/]java[\\/]QuestionModel.java"/>
 
 </suppressions>

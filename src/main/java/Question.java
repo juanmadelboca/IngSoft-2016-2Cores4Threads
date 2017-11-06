@@ -14,10 +14,9 @@ public class Question implements Serializable {
     private String trueAnswer;
 
     public Question(String question, String[] answer, String trueAnswer) throws Exception {
-        // TODO implement here
     	if (question.equals("") || answer[0].equals("") ||
-       			answer[1].equals("") || answer[2].equals("") ||
-       			answer[3].equals("") || trueAnswer.equals("")) {
+    			answer[1].equals("") || answer[2].equals("") ||
+    			answer[3].equals("") || trueAnswer.equals("")) {
 
     		throw new Exception();
     	} else {
