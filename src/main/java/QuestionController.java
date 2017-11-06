@@ -1,13 +1,13 @@
 package main.java;
 
 public class QuestionController implements ControllerInterface {
-	QuestionModelInterface model;
-	DJView view;
-	QuestionView qview;
+    QuestionModelInterface model;
+    DJView view;
+    QuestionView qview;
 
-	public QuestionController(QuestionModelInterface model) {
-    	this.model = model;
-		view = new DJView(this, new QuestionAdapter(model));
+    public QuestionController(QuestionModelInterface model) {
+        this.model = model;
+        view = new DJView(this, new QuestionAdapter(model));
         view.createView();
         view.createControls();
         view.setTitle("QuestionView");
@@ -18,11 +18,11 @@ public class QuestionController implements ControllerInterface {
 
     }
 
-	public void start() {
+    public void start() {
         model.initialize();
         model.nextQuestion();
 
-	}
+    }
 
     public void stop() {
     }
@@ -40,8 +40,8 @@ public class QuestionController implements ControllerInterface {
     }
 
     public boolean send(String quest) {
-    	boolean correctAnswer = model.compare(quest);
-    	model.nextQuestion();
+        boolean correctAnswer = model.compare(quest);
+        model.nextQuestion();
         return correctAnswer;
     }
 
@@ -54,19 +54,19 @@ public class QuestionController implements ControllerInterface {
     }
 
     public void addQuestion(String question, String[] answer, String trueAnswer) throws Exception {
-    	Question quest = new Question(question, answer, trueAnswer);
+        Question quest = new Question(question, answer, trueAnswer);
         model.addQuestion(quest);
     }
     public void showBeatBar(boolean show) {
-    	view.showBeatBar(show);
+        view.showBeatBar(show);
     }
 
     public void showControl(boolean show) {
-    	view.showControl(show);
+        view.showControl(show);
     }
 
     public void showQuestion(boolean show) {
-    	qview.showQuestion(show);
+        qview.showQuestion(show);
     }
 
 }
