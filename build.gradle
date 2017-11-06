@@ -14,8 +14,11 @@ checkstyle {
     configFile = new File("${project.projectDir}", "checkstyle.xml")
 }
 
-findbugsMain {
-  xml.enabled = false
-  html.enabled = true
+findbugs {
+  ignoreFailures = true
+  toolVersion = "2.0.1"
+  sourceSets = [sourceSets.main]
+  reportsDir = file("$project.buildDir/reports/findbugs")
+  effort = "max"
 }
 
