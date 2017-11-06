@@ -8,9 +8,13 @@ dependencies {
 }
 
 apply plugin: 'checkstyle'
-
+apply plugin: 'findbugs'
 checkstyle {
     configFile = new File("${project.projectDir}", "checkstyle.xml")
 }
 
+findbugs {
+    sourceSets = [ subProject.sourceSets.main, subProject.sourceSets.test ]
+    ignoreFailures = true
+}
 
