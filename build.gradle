@@ -22,3 +22,19 @@ findbugs {
   effort = "max"
 }
 
+task pmd << {
+    println 'Running PMD static code analysis'
+    ant {
+        taskdef(name:'pmd', classname:'net.sourceforge.pmd.ant.PMDTask', classpath: configurations.pmdConf.asPath)
+
+        pmd(shortFilenames:'true', failonruleviolation:'true', rulesetfiles:'conf/pmd-rules.xml') {
+            formatter(type:'csv', tofile:'myreport.csv', toConsole:'true')
+            fileset(dir: "src/main/java") {
+                include(name: '**/*.java')
+            }
+            fileset(dir: "src/test/java") {
+                include(name: '**/*.java')
+            }        
+        }
+    }
+}
