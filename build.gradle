@@ -1,4 +1,7 @@
 apply plugin: 'java'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+
 
 repositories {
     mavenCentral()
@@ -6,9 +9,6 @@ repositories {
 dependencies {
     testCompile 'junit:junit:4.10'
 }
-
-apply plugin: 'checkstyle'
-apply plugin: 'findbugs'
 
 checkstyle {
     configFile = new File("${project.projectDir}", "checkstyle.xml")
@@ -22,7 +22,20 @@ findbugs {
   effort = "max"
 }
 
-task findbugs << {
+jacoco {
+    toolVersion = jacocoVersion
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled = true
+        xml.enabled =  true
+        csv.enabled = true
+    }
+}
+test.finalizedBy jacocoTestReport
+
+task pmd << {
     println 'Running PMD static code analysis'
     ant {
         taskdef(name:'pmd', classname:'net.sourceforge.pmd.ant.PMDTask', classpath: configurations.pmdConf.asPath)
