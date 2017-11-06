@@ -24,5 +24,9 @@
   <suppress checks="." files="src[\\/]main[\\/]java[\\/]multiViewTestDrive.java"/>
   <suppress checks="." files="src[\\/]main[\\/]java[\\/]SelectionTestDrive.java"/>
   <suppress checks="." files="src[\\/]main[\\/]java[\\/]SelectionView.java"/>
+  <suppress checks="." files="src[\\/]main[\\/]java[\\/]MyQuestionTestDrive.java"/>
+  <suppress checks="." files="src[\\/]main[\\/]java[\\/]QuestionModelInterface.java"/>
+  <suppress checks="." files="src[\\/]main[\\/]java[\\/]QuestionObserver.java"/>
+  <suppress checks="." files="src[\\/]main[\\/]java[\\/]QuestionView.java"/>
 
 </suppressions>

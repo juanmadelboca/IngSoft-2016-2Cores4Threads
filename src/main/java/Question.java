@@ -2,7 +2,7 @@ package main.java;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class Question implements Serializable{
+public class Question implements Serializable {
 
     public Question() {
     }
@@ -15,13 +15,15 @@ public class Question implements Serializable{
 
     public Question(String question, String[] answer, String trueAnswer) throws Exception {
         // TODO implement here
-       	if(question.equals("")||answer[0].equals("")||answer[1].equals("")||answer[2].equals("")||answer[3].equals("")||trueAnswer.equals("")){
+    	if (question.equals("") || answer[0].equals("") ||
+       			answer[1].equals("") || answer[2].equals("") ||
+       			answer[3].equals("") || trueAnswer.equals("")) {
     		
             throw new Exception();
-    	}else{
-    		this.question=question;
-            this.answer=answer;
-            this.trueAnswer=trueAnswer;
+    	} else {
+    		this.question = question;
+            this.answer = answer;
+            this.trueAnswer = trueAnswer;
         }
     }
 

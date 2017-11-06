@@ -14,16 +14,15 @@ public class QuestionController implements ControllerInterface {
         model.initialize();
         view.disableStopMenuItem();
         view.disableStartMenuItem();
-        qview= new QuestionView(this, model);
+        qview = new QuestionView(this, model);
 
     }
 
 	public void start() {
-
         model.initialize();
         model.nextQuestion();
         
-    }
+	}
 
     public void stop() {
     }
@@ -41,7 +40,7 @@ public class QuestionController implements ControllerInterface {
     }
 
     public boolean send(String quest) {
-    	boolean correctAnswer= model.compare(quest);
+    	boolean correctAnswer = model.compare(quest);
     	model.nextQuestion();
         return correctAnswer;
     }
@@ -55,19 +54,18 @@ public class QuestionController implements ControllerInterface {
     }
 
     public void addQuestion(String question, String[] answer, String trueAnswer) throws Exception {
-    	Question quest= new Question(question,answer,trueAnswer);
+    	Question quest = new Question(question, answer, trueAnswer);
         model.addQuestion(quest);
     }
-    public void showBeatBar(boolean show)
-    {
+    public void showBeatBar(boolean show) {
     	view.showBeatBar(show);
     }
-    public void showControl(boolean show){
+    
+    public void showControl(boolean show) {
     	view.showControl(show);
     }
     
-    public void showQuestion(boolean show)
-    {
+    public void showQuestion(boolean show) {
     	qview.showQuestion(show);
     }
 

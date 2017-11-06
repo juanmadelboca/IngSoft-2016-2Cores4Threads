@@ -18,7 +18,6 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	private boolean start;
 	public	boolean	finish;
 
-
 	public QuestionModel() {
 		questions = new ArrayList<Question>();
 		highScores = new HashMap<String, Integer>();
@@ -27,9 +26,9 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		questionObservers = new ArrayList<QuestionObserver>();
 		dificulty = 0;
 		thread = new Thread(this);
-		score=0;
-		time=500;
-		timeset=0;
+		score = 0;
+		time = 500;
+		timeset = 0;
 		thread.start();
 	}
 
@@ -48,11 +47,9 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			highScores = (HashMap<String, Integer>) entrada2.readObject();
 			entrada2.close();
 			
-		} 
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			System.out.println("No existe la base o el objeto se procede a crearla");
-		}
-		 catch (ClassNotFoundException e ) {
+		} catch (ClassNotFoundException e ) {
 			System.out.println("No existe el objeto en la base");
 			e.printStackTrace();
 			carga = false;
@@ -60,26 +57,22 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			carga = false;
-		}
-
-		
+		}		
 
 		if (carga)
 			System.out.println("Carga con exito");
 	}
 
-	private void saveScore(){
-
+	private void saveScore() {
 		boolean guardar = true;
 		try {
 			//guardo preguntas
 			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("highScores.obj"));
 			salida.writeObject(highScores);
-			salida.close();}
-		catch (FileNotFoundException e) {
+			salida.close();
+			} catch (FileNotFoundException e) {
 			System.out.println("No existe la base o el objeto se procede a crearla");
-		}
-		 catch (IOException e) {
+			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			guardar = false;
@@ -92,32 +85,29 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 			//guardo preguntas
 			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("base.obj"));
 			salida.writeObject(questions);
-			salida.close();}
-		catch (FileNotFoundException e) {
+			salida.close();
+			} catch (FileNotFoundException e) {
 			System.out.println("No existe la base o el objeto se procede a crearla");
-		}
-		 catch (IOException e) {
+			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			guardar = false;
 		}
-		
-	
 	}
+	
 	public void addQuestion(Question quest) {
 		questions.add(quest);
 		save();
-
 	}
 
 	public void initialize() {
 		load();
-		start=false;
-		score=0;
-		if (timeset==0)
-			time=100;
-		else time=timeset;
-		finish=false;
+		start = false;
+		score = 0;
+		if (timeset == 0)
+			time = 100;
+		else time = timeset;
+		finish = false;
 	}
 
 	public void nextQuestion() {
@@ -127,28 +117,28 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		question = questions.get(valor);
 		questions.remove(valor);
 		notifyQuestionObserver();
-		start=true;
-		}else
-		{
+		start = true;
+		} else {
 			// ACA TENEMOS QUE AGREGAR QUE DEBE HACER EL PROGRAMA CUANDO SE ACABEN LAS PREGUNTAS
 			finishGame();
 		}
-		}
+	}
 
-	private	void finishGame(){
+	private	void finishGame() {
 		highScores.put(player, score);
 		System.out.println(getHighScores());
 		saveScore();
-		question=null;
+		question = null;
 		notifyQuestionObserver();
-		time=0;
-		finish=true;
+		time = 0;
+		finish = true;
 	}
+	
 	public String getQuestion() {
-		if(question==null){
+		if(question == null){
 			System.out.println("Arranca null");
 			return  null;
-		}else{
+		} else {
 		return question.getQuestion();
 		}
 	}
@@ -166,12 +156,13 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	}
 
 	public String getHighScores() {
-
 		Iterator it = highScores.entrySet().iterator();
 		StringBuffer sb= new StringBuffer();
 
 		sb.append("Player"+"				"+"| Points"	+"\n");
-		sb.append("---------------------------------------------------------------------------------------------------------------"+"\n");
+		sb.append("----------------------------------------------"+
+		"----------------------------------------------------"+
+				"-------------"+"\n");
 		while (it.hasNext()) {
 		Map.Entry e = (Map.Entry)it.next();
 		sb.append(e.getKey()+"				"+e.getValue()	+"\n");
@@ -225,10 +216,11 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		notifyBPMObserver();
 		notifyBeatObserver();
 	}
-    public int getDificulty()
-	{
+	
+    public int getDificulty() {
 		return dificulty;
 	}
+    
 	public void registerObserver(BeatObserver o) {
 		// TODO implement here
 		beatObservers.add(o);
@@ -258,25 +250,27 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 		// TODO implement here
 		questionObservers.remove(o);
 	}
-	public void notifyQuestionObserver(){
-		int i=0;
-		while( i<questionObservers.size()){
+	
+	public void notifyQuestionObserver() {
+		int i = 0;
+		while( i < questionObservers.size()){
 			QuestionObserver observer= questionObservers.get(i);
 			observer.updateQuestion();
 			i++;
 		}
 	}
+	
 	public void notifyBPMObserver(){
-		int i=0;
-		while( i<bpmObservers.size()){
-			BPMObserver observer= bpmObservers.get(i);
+		int i = 0;
+		while( i < bpmObservers.size()){
+			BPMObserver observer = bpmObservers.get(i);
 			observer.updateBPM();
 			i++;
 		}
 	}
 	public void notifyBeatObserver(){
-		int i=0;
-		while( i<beatObservers.size()){
+		int i = 0;
+		while( i < beatObservers.size()){
 			BeatObserver observer= beatObservers.get(i);
 			observer.updateBeat();
 			i++;
@@ -287,40 +281,36 @@ public class QuestionModel implements QuestionModelInterface, Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while(true){
-		while(time>=0){
+			while(time >= 0){
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if (start)
+					decreaseTime();
+			}
+	
+			if(!finish)
+				finishGame();
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (start)
-				decreaseTime();
-			
-			
-		
-	}
-
-		System.out.println("VIVO");
-		if(!finish)
-		finishGame();
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		}
 	//aca el codigo de que hacer cuando se acaba el tiempo
 		
-}
+	}
 
 	@Override
-	public void Stop() 
-	{
+	public void Stop() {
 		Thread.interrupted();
 		notifyBPMObserver();
 	}
-	public ArrayList<Question>getQuestions(){
+	
+	public ArrayList<Question>getQuestions() {
 		return questions;
 	}
 }
